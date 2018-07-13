@@ -6,7 +6,10 @@
 ## 大纲
 ### 配置
 #### 注解配置
-
+@RestController 标志此Controller提供RestAPI
+@RequestMapping 及其变体。映射http请求url到java方法
+@RequestParam 映射请求参数到java方法的参数
+@PageableDefault 指定分页参数的默认值
 
 
 ### 代码
