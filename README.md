@@ -7,12 +7,31 @@
 ### 配置
 #### 注解配置
 @RestController 标志此Controller提供RestAPI
+
 @RequestMapping 及其变体。映射http请求url到java方法
+
 @RequestParam 映射请求参数到java方法的参数
+
 @PageableDefault 指定分页参数的默认值
 
+@PathVariable 映射url片段到Java方法的参数
 
-### 代码
+@JsonView 控制输出json输出内容
+- 使用接口来声明多个视图
+- 在值对象的get方法上指定视图
+- 在Controller方法上指定视图
+
+@GetMapping
+
+@RequestBody 映射请求体到Java方法的参数
+
+@Valid 注解和 BindingResult 验证请求参数的合法性并处理校验结果
+
+
+
+### RESTful API 错误处理
+> Spring Boot 中默认的错误处理机制
+> 自定义异常处理
 
 #### 处理异常 Handler
 ```
