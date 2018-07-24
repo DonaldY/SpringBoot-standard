@@ -34,6 +34,7 @@
 > 自定义异常处理
 
 #### 处理异常 Handler
+要处理的异常可以拿取抛出的异常，当然必须是Spring中抛出的异常，例如这种就不是：java.lang.NumberFormatException
 ```
 @GetMapping(value = "/{id:\\d+}")
 
