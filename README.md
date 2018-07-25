@@ -47,3 +47,6 @@
 
 ### 实体类（POJO、DTO、BO、VO）
 
+#### VO
+mybatis 可以返回 map，controller层可以将map封装进ModelAndView中
+
