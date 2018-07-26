@@ -50,3 +50,9 @@
 #### VO
 mybatis 可以返回 map，controller层可以将map封装进ModelAndView中
 
+
+### 插件
+1. mybatis generator
+
+2. pagehelper
+
