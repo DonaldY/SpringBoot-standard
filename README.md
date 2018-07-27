@@ -56,3 +56,38 @@ mybatis 可以返回 map，controller层可以将map封装进ModelAndView中
 
 2. pagehelper
 
+
+
+## mybatis
+
+### 动态查询
+1. `where 1=1`
+```
+<select id="selectById" resultType="">
+    SELECT * FROM xxx
+    WHERE 1 = 1
+    <if test="a != null">
+      AND a = 1
+    </if>
+    <if test="b != null">
+      AND b = 2
+    </if>
+</select>
+```
+
+2. `<trim prefixOverrides="and">` （推荐）
+```
+<select id="selectById" resultType="">
+    SELECT * FROM xxx
+    <where>
+        <trim prefixOverrides="and">
+           <if test="a != null">
+             AND a = 1
+           </if>
+           <if test="b != null">
+             AND b = 1
+           </if>
+        </trim>
+    </where>
+</select>
+```
