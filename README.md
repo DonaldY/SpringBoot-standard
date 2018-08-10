@@ -106,3 +106,27 @@ Spring
 
 ## 上传文件
 ### OSS 上传
+
+
+## 跨域问题
+1. 注解 : `@CrossOrigin`
+2. 过滤器
+```
+@Configuration
+public class CorsConfig {
+    private CorsConfiguration buildConfig() {
+        CorsConfiguration corsConfiguration = new CorsConfiguration();
+        corsConfiguration.addAllowedOrigin("*"); // 1
+        corsConfiguration.addAllowedHeader("*"); // 2
+        corsConfiguration.addAllowedMethod("*"); // 3
+        return corsConfiguration;
+    }
+
+    @Bean
+    public CorsFilter corsFilter() {
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", buildConfig()); // 4
+        return new CorsFilter(source);
+    }
+}
+```
