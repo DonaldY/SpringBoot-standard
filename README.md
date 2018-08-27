@@ -92,6 +92,13 @@ mybatis 可以返回 map，controller层可以将map封装进ModelAndView中
 </select>
 ```
 
+### 一对多情况下，一方存入对象中
+```
+<resultMap id="" type="">
+    <association property="" javaType="" resultMap="" />
+    <association property="" javaType="" resultMap="" />
+</resultMap>
+```
 
 ### 工具集
 Spring
