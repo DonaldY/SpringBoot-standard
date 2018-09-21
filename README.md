@@ -27,7 +27,14 @@
 
 @Valid 注解和 BindingResult 验证请求参数的合法性并处理校验结果
 
-
+##### 接受参数，对应生成多个实体
+```
+@PostMapping(value = "/create")
+public ServerResponse create(@RequestAttribute Integer userId, @Valid @RequestBody Map<String, Object> models) {
+    Project project = JSON.parseObject(JSON.toJSONString(models),  Project.class);
+    Enterprise enterprise = JSON.parseObject(JSON.toJSONString(models), Enterprise.class);
+}
+```
 
 ### RESTful API 错误处理
 > Spring Boot 中默认的错误处理机制
