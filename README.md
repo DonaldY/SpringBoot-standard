@@ -109,6 +109,12 @@ mybatis 可以返回 map，controller层可以将map封装进ModelAndView中
 </resultMap>
 ```
 
+### 插入返回值
+
+### `collection` 用法
+
+### `association` 用法 
+
 ### 工具集
 Spring
 1. StringUtils
