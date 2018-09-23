@@ -1,4 +1,18 @@
-﻿public class AliyunOSSUtils {
+package com.donaldy.utils;
+
+import com.aliyun.oss.OSSClient;
+import com.aliyun.oss.OSSException;
+import com.aliyun.oss.model.*;
+import org.apache.commons.io.IOUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.web.multipart.MultipartFile;
+
+import javax.servlet.http.HttpServletResponse;
+import java.io.*;
+import java.util.Calendar;
+
+public class AliyunOSSUtils {
 
     private static Logger logger = LoggerFactory.getLogger(AliyunOSSUtils.class);
     private static final String endpoint = "oss-cn-hangzhou.aliyuncs.com";
