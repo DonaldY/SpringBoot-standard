@@ -14,7 +14,7 @@ import java.util.List;
 /**
  * 可加入第三方过滤器
  */
-@Configuration
+/*@Configuration
 public class WebConfig extends WebMvcConfigurationSupport {
 
     @Override
@@ -43,4 +43,4 @@ public class WebConfig extends WebMvcConfigurationSupport {
     public TimeInterceptor timeInterceptor() {
         return new TimeInterceptor();
     }
-}
+}*/
