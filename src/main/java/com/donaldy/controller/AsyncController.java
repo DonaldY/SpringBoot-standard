@@ -1,6 +1,9 @@
 package com.donaldy.controller;
 
+import com.donaldy.service.AsyncTask;
+import com.donaldy.service.UserService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,9 +26,10 @@ public class AsyncController {
      *
      * Callable 和 DeferredResult做的是同样的事情 ：释放容器线程
      *
-     *
-     *
      */
+
+    @Autowired
+    private UserService userService;
 
     @GetMapping(value = "/deferred")
     public DeferredResult<String> DeferredWay() {
@@ -37,15 +41,20 @@ public class AsyncController {
     }
 
     @GetMapping(value = "/callable")
-    public Callable<String> callableWay() {
+    public Callable<String> callableWay() throws Exception {
         log.info("enter callable");
+        Thread.sleep(2000);
         Callable<String> callable = new Callable<String>() {
             @Override
             public String call() throws Exception {
                 log.info("fuck you");
+                Thread.sleep(3000);
+                log.info("123");
                 return "hello yyf";
             }
         };
+        /*String callableCallStr = callable.call();
+        log.info("callable call : {}", callableCallStr);*/
         log.info("exit callable");
         return callable;
     }
@@ -64,19 +73,32 @@ public class AsyncController {
         return "hi ";
     }
 
-    @GetMapping(value = "/test1")
-    public String test1() {
-        log.info("进入 test1");
-        String str = getTest1();
-        System.out.println(str);
-        log.info("str : {} ", str);
-        return "test1 finished!";
+    @GetMapping(value = "/callable3")
+    public String callableWay3() {
+        log.info(String.valueOf(Thread.currentThread().getId()));
+        AsyncTask asyncTask = new AsyncTask();
+        asyncTask.dealNoReturnTask();
+        try {
+            log.info("begin to deal other Task!");
+            Thread.sleep(10000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        log.info("exit callable3");
+        return "hi ";
     }
 
-    @Async
-    public String getTest1() {
-        log.info("get test ");
-        return "success";
+    @GetMapping(value = "/test1")
+    public String test1() {
+        log.info("enter test1, threadId : {}", Thread.currentThread().getId());
+
+        userService.executeUserInfo(1);
+        userService.executeUserInfo(2);
+        userService.executeUserInfo(3);
+
+        log.info("exit test1, threadId : {}", Thread.currentThread().getId());
+
+        return "123";
     }
 
 }
