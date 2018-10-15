@@ -15,20 +15,14 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 import org.springframework.web.servlet.NoHandlerFoundException;
 
+import javax.validation.ConstraintViolation;
+import javax.validation.ConstraintViolationException;
 import java.io.IOException;
+import java.util.Iterator;
 
 @Slf4j
 @ControllerAdvice
 public class RestExceptionHandler {
-    /**
-     * 自定义运行异常
-     * @return
-     */
-    @ExceptionHandler(RestfulException.class)
-    @ResponseBody
-    public ServerResponse restfulExceptionHandler() {
-        return restfulExceptionHandler();
-    }
 
     /**
      * 自定义运行异常
@@ -85,6 +79,22 @@ public class RestExceptionHandler {
         exception.printStackTrace();
         return ServerResponse.createByErrorCodeMessage(Const.HttpStatusCode.BAD_REQUEST.getCode(),
                 "我要的是红色的，你怎么给我绿色。");
+    }
+
+    /**
+     * 校验JSR-303
+     * @param exception
+     * @return
+     */
+    @ExceptionHandler(ConstraintViolationException.class)
+    @ResponseBody
+    public ServerResponse validate(ConstraintViolationException exception) {
+        log.error(exception.getMessage());
+        exception.printStackTrace();
+        Iterator iter = exception.getConstraintViolations().iterator();
+        ConstraintViolation constraintViolation = (ConstraintViolation) iter.next();
+        return ServerResponse.createByErrorCodeMessage(Const.HttpStatusCode.BAD_REQUEST.getCode(),
+                constraintViolation.getConstraintDescriptor().getMessageTemplate());
     }
 
     /**
