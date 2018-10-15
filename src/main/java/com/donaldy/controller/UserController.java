@@ -19,23 +19,11 @@ public class UserController {
     
     @Autowired
     private UserService userService;
-    
-    /*@GetMapping
-    public List<User> query() {
-        List<User> users = new ArrayList<>();
-        users.add(new User());
-        users.add(new User());
-        users.add(new User());
-        return users;
-    }*/
-    
-    @GetMapping
+
+    @GetMapping(value = "")
     public List<User> queryUser(@RequestParam String username) {
-        System.out.println("username : " + username);
-        List<User> users = new ArrayList<>();
-        User user = new User();
-        users.add(user);
-        return users;
+
+        return this.userService.getUserListByName(username);
     }
     
     @GetMapping(value = "/{id:\\d+}")
