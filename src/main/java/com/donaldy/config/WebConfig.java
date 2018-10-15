@@ -5,7 +5,6 @@ import com.donaldy.interceptor.TimeInterceptor;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.validation.beanvalidation.MethodValidationPostProcessor;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
 
@@ -15,6 +14,7 @@ import java.util.List;
 /**
  * 可加入第三方过滤器
  */
+/*
 @Configuration
 public class WebConfig extends WebMvcConfigurationSupport {
 
@@ -45,9 +45,5 @@ public class WebConfig extends WebMvcConfigurationSupport {
         return new TimeInterceptor();
     }
 
-    @Bean
-    public MethodValidationPostProcessor methodValidationPostProcessor() {
-        return new MethodValidationPostProcessor();
-    }
-
 }
+*/

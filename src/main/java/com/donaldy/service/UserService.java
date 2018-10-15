@@ -1,5 +1,6 @@
 package com.donaldy.service;
 
+import com.donaldy.handler.RestfulException;
 import com.donaldy.model.User;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.validator.constraints.Length;
@@ -24,6 +25,9 @@ public class UserService {
         log.info("enter executeUserInfo userId : {}, threadId : {}", userId, Thread.currentThread().getId());
         try {
             Thread.sleep(2000);
+            if (userId == 2) {
+                throw new RestfulException(0, "error");
+            }
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
