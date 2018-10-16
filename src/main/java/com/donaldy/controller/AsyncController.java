@@ -26,6 +26,10 @@ public class AsyncController {
      *
      * Callable 和 DeferredResult做的是同样的事情 ：释放容器线程
      *
+     * 需要什么样的异步？
+     *
+     * 主线程尽早处理完并返回信息，而副线程执行剩余的内容。
+     *
      */
 
     @Autowired
