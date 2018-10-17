@@ -1,5 +1,6 @@
 package com.donaldy.service.impl;
 
+import com.donaldy.handler.AsyncException;
 import com.donaldy.model.User;
 import com.donaldy.service.UserService;
 import lombok.extern.slf4j.Slf4j;
@@ -22,7 +23,12 @@ public class UserServiceImpl implements UserService {
         log.info("enter executeUserInfo userId : {}, threadId : {}", userId, Thread.currentThread().getId());
         try {
             Thread.sleep(2000);
+            if (userId == 2) {
+                throw new AsyncException(1, "123");
+            }
         } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (AsyncException e) {
             e.printStackTrace();
         }
         log.info("exit executeUserInfo userId : {}, threadId : {}", userId, Thread.currentThread().getId());

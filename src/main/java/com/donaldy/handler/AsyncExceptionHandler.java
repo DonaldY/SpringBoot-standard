@@ -12,12 +12,12 @@ public class AsyncExceptionHandler implements AsyncUncaughtExceptionHandler {
     public void handleUncaughtException(Throwable ex, Method method, Object... params) {
         log.info("Async method: {} has uncaught exception,params:{}", method.getName(), params.toString());
 
-        if (ex instanceof AsyncException) {
+        /*if (ex instanceof AsyncException) {
             AsyncException asyncException = (AsyncException) ex;
             log.info("asyncException:{}",asyncException.getErrorMessage());
-        }
+        }*/
 
-        log.info("Exception :");
-        ex.printStackTrace();
+        log.info("异步发生异常啦！");
+
     }
 }

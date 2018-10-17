@@ -17,11 +17,11 @@ public class AsyncConfig implements AsyncConfigurer {
 
     @Override
     public Executor getAsyncExecutor() {
-        ThreadPoolTaskExecutor executor = new VisiableThreadPoolTaskExecutor();
+        ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
         executor.setCorePoolSize(3);
         executor.setMaxPoolSize(10);
         executor.setQueueCapacity(100);
-        executor.setThreadNamePrefix("AsyncExecutorThread-yyf-");
+        executor.setThreadNamePrefix("AsyncThread-");
         executor.initialize(); //如果不初始化，导致找到不到执行器
         return executor;
     }
