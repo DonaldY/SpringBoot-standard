@@ -25,9 +25,6 @@ public class UserService {
         log.info("enter executeUserInfo userId : {}, threadId : {}", userId, Thread.currentThread().getId());
         try {
             Thread.sleep(2000);
-            if (userId == 2) {
-                throw new RestfulException(0, "error");
-            }
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
