@@ -1,6 +1,6 @@
 package com.donaldy.handler;
 
-import com.donaldy.model.AsyncException;
+import com.donaldy.handler.AsyncException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.aop.interceptor.AsyncUncaughtExceptionHandler;
 

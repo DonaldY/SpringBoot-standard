@@ -13,7 +13,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Slf4j
-@Validated
 @Service
 public class UserServiceImpl implements UserService {
 
@@ -29,6 +28,7 @@ public class UserServiceImpl implements UserService {
         log.info("exit executeUserInfo userId : {}, threadId : {}", userId, Thread.currentThread().getId());
     }
 
+    @Validated
     @Override
     public List<User> getUserListByName(@NotBlank(message = "用户名不能为空")
                                         @Length(min = 3, max = 10, message = "用户名长度大于3小于10") String username) {

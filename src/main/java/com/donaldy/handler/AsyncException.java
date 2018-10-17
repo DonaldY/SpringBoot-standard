@@ -1,4 +1,4 @@
-package com.donaldy.model;
+package com.donaldy.handler;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
