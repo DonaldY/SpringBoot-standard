@@ -21,9 +21,9 @@ public class UserController {
     private UserService userService;
 
     @GetMapping(value = "")
-    public List<User> queryUser(@RequestParam String username) {
+    public List<User> queryUser(@RequestParam String username, User user) {
 
-        return this.userService.getUserListByName(username);
+        return this.userService.getUserListByName(username, user);
     }
     
     @GetMapping(value = "/{id:\\d+}")

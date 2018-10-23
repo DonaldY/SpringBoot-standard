@@ -1,39 +1,24 @@
 package com.donaldy.model;
 
+import lombok.Data;
+
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 /**
  * Created by DonaldY on 2018/7/13.
  */
+@Data
 public class User {
     
-    @NotBlank
+    @NotBlank(message = "用户类中用户名不能为空")
     private String username;
+
+    @NotBlank(message = "密码不能为空")
     private String password;
+
+    @NotNull(message = "")
     private Date birthday;
 
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public Date getBirthday() {
-        return birthday;
-    }
-
-    public void setBirthday(Date birthday) {
-        this.birthday = birthday;
-    }
 }

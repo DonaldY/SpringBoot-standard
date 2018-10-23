@@ -35,7 +35,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<User> getUserListByName(String username) {
+    public List<User> getUserListByName(String username, User _user) {
+        System.out.println("input user : " + _user);
         System.out.println("username : " + username);
         List<User> users = new ArrayList<>();
         User user = new User();
