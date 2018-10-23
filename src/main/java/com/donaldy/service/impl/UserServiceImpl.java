@@ -34,10 +34,8 @@ public class UserServiceImpl implements UserService {
         log.info("exit executeUserInfo userId : {}, threadId : {}", userId, Thread.currentThread().getId());
     }
 
-    @Validated
     @Override
-    public List<User> getUserListByName(@NotBlank(message = "用户名不能为空")
-                                        @Length(min = 3, max = 10, message = "用户名长度大于3小于10") String username) {
+    public List<User> getUserListByName(String username) {
         System.out.println("username : " + username);
         List<User> users = new ArrayList<>();
         User user = new User();
