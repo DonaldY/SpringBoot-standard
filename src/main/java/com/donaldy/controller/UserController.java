@@ -32,7 +32,7 @@ public class UserController {
         user.setUsername("Donald");
         return user;
     }
-    
+
     @PostMapping
     public User create(@Valid @RequestBody User user, BindingResult errors) {
         
