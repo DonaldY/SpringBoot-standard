@@ -7,6 +7,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import javax.xml.validation.Validator;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,8 +42,7 @@ public class UserController {
                 error -> System.out.println(error.getDefaultMessage())
             );
         }
-        
-        System.out.println(user.getUsername());
+
         user.setUsername("Donald");
         return user;
     }

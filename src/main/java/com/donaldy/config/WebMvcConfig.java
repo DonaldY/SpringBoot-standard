@@ -14,9 +14,8 @@ import java.util.List;
 /**
  * 可加入第三方过滤器
  */
-/*
 @Configuration
-public class WebConfig extends WebMvcConfigurationSupport {
+public class WebMvcConfig extends WebMvcConfigurationSupport {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
@@ -46,4 +45,3 @@ public class WebConfig extends WebMvcConfigurationSupport {
     }
 
 }
-*/
