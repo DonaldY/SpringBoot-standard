@@ -56,7 +56,10 @@ public class WebConfig implements WebMvcConfigurer {
 
     @Bean
     public Validator validator(){
-        ValidatorFactory validatorFactory = Validation.byProvider(HibernateValidator.class).configure().failFast(true).buildValidatorFactory();
+        ValidatorFactory validatorFactory = Validation.byProvider(HibernateValidator.class).
+                configure().
+                failFast(true).
+                buildValidatorFactory();
         return validatorFactory.getValidator();
     }
 
