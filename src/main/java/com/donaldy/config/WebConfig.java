@@ -2,12 +2,17 @@ package com.donaldy.config;
 
 import com.donaldy.filter.TimeFilter;
 import com.donaldy.interceptor.TimeInterceptor;
+import org.hibernate.validator.HibernateValidator;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.validation.beanvalidation.MethodValidationPostProcessor;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import javax.validation.Validation;
+import javax.validation.Validator;
+import javax.validation.ValidatorFactory;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,14 +20,12 @@ import java.util.List;
  * 可加入第三方过滤器
  */
 @Configuration
-public class WebMvcConfig extends WebMvcConfigurationSupport {
+public class WebConfig implements WebMvcConfigurer {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
 
         registry.addInterceptor(timeInterceptor()).addPathPatterns("/**");
-
-        super.addInterceptors(registry);
     }
 
     @Bean
@@ -42,6 +45,19 @@ public class WebMvcConfig extends WebMvcConfigurationSupport {
     @Bean
     public TimeInterceptor timeInterceptor() {
         return new TimeInterceptor();
+    }
+
+    @Bean
+    public MethodValidationPostProcessor methodValidationPostProcessor() {
+        MethodValidationPostProcessor processor = new MethodValidationPostProcessor();
+        processor.setValidator(validator());
+        return processor;
+    }
+
+    @Bean
+    public Validator validator(){
+        ValidatorFactory validatorFactory = Validation.byProvider(HibernateValidator.class).configure().failFast(true).buildValidatorFactory();
+        return validatorFactory.getValidator();
     }
 
 }
