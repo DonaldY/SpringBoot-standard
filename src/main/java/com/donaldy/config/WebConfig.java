@@ -56,6 +56,7 @@ public class WebConfig implements WebMvcConfigurer {
 
     @Bean
     public Validator validator(){
+        // failFast(true)启动快速失败
         ValidatorFactory validatorFactory = Validation.byProvider(HibernateValidator.class).
                 configure().
                 failFast(true).

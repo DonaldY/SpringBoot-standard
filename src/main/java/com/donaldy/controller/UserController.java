@@ -7,8 +7,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import javax.xml.validation.Validator;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -35,7 +33,7 @@ public class UserController {
     }
 
     @PostMapping
-    public User create(@Valid @RequestBody User user, BindingResult errors) {
+    public User getUser(@Valid @RequestBody User user, BindingResult errors) {
         
         if (errors.hasErrors()) {
             errors.getAllErrors().stream().forEach(
