@@ -13,7 +13,7 @@ public class unit {
     @Test
     public void testCalendarBig() {
 
-        int monthInterval = this.getMonthBetweenTwoDate("2018-10", "2017-10");
+        int monthInterval = this.getMonthInterval("2018-10", "2017-10");
 
         Assert.assertEquals("", 12, monthInterval);
     }
@@ -21,34 +21,25 @@ public class unit {
     @Test
     public void testCalendarMiddleBig() {
 
-        int monthInterval = this.getMonthBetweenTwoDate("2018-11", "2018-10");
+        int monthInterval = this.getMonthInterval("2018-11", "2018-10");
 
         Assert.assertEquals("", 1, monthInterval);
     }
 
     @Test
-    public void testCalendarMiddleSmall() {
-
-        int monthInterval = this.getMonthBetweenTwoDate("2018-10", "2018-12");
-
-        Assert.assertEquals("", 2, monthInterval);
-    }
-
-    @Test
-    public void testCalendarSmall() {
-        int monthInterval = this.getMonthBetweenTwoDate("2017-09", "2018-10");
-
-        Assert.assertEquals("", 13, monthInterval);
-    }
-
-    @Test
     public void testCalendarEqual() {
-        int monthInterval = this.getMonthBetweenTwoDate("2018-11", "2018-11");
+        int monthInterval = this.getMonthInterval("2018-11", "2018-11");
 
         Assert.assertEquals("", 0, monthInterval);
     }
 
-    private int getMonthBetweenTwoDate(String nowDateStr, String originalDateStr) {
+    /**
+     * 适用 当前时间 大于 起始时间
+     * @param nowDateStr       当前时间字符串
+     * @param originalDateStr  起始时间字符串
+     * @return                 期数
+     */
+    private int getMonthInterval(String nowDateStr, String originalDateStr) {
 
         DateFormat sdf = new SimpleDateFormat("yyyy-MM");
 
@@ -58,28 +49,32 @@ public class unit {
 
             Date nowDate= sdf.parse(nowDateStr);
 
-            Calendar c1 = Calendar.getInstance();
+            Calendar nowCalender = Calendar.getInstance();
 
-            Calendar c2 = Calendar.getInstance();
+            Calendar originalCalender = Calendar.getInstance();
 
-            c1.setTime(originalDate);
+            originalCalender.setTime(originalDate);
 
-            c2.setTime(nowDate);
+            nowCalender.setTime(nowDate);
 
-            int year1 = c1.get(Calendar.YEAR);
-            int year2 = c2.get(Calendar.YEAR);
-            int month1 = c1.get(Calendar.MONTH);
-            int month2 = c2.get(Calendar.MONTH);
+            int originalYear = originalCalender.get(Calendar.YEAR);
+            int nowYear = nowCalender.get(Calendar.YEAR);
+            int originalMonth = originalCalender.get(Calendar.MONTH);
+            int nowMonth = nowCalender.get(Calendar.MONTH);
 
-            int yearInterval = Math.abs(year1 - year2);
+            if (nowYear < originalYear || (nowYear == originalYear && nowMonth < originalMonth)) {
+                return 0;
+            }
+
+            int yearInterval = Math.abs(nowYear - originalYear);
 
             int monthInterval = 0;
 
-            if (month1 < month2) {
+            if (nowMonth < originalMonth) {
                 yearInterval --;
-                monthInterval = month1 + 12 - month2;
+                monthInterval = nowMonth + 12 - originalMonth;
             } else {
-                monthInterval = month1 - month2;
+                monthInterval = nowMonth - originalMonth;
             }
 
             return Math.abs(yearInterval * 12 + monthInterval);
