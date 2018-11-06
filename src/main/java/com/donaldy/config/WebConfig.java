@@ -22,7 +22,7 @@ import java.util.List;
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
 
-    @Override
+    /*@Override
     public void addInterceptors(InterceptorRegistry registry) {
 
         registry.addInterceptor(timeInterceptor()).addPathPatterns("/**");
@@ -40,7 +40,7 @@ public class WebConfig implements WebMvcConfigurer {
         registrationBean.setUrlPatterns(urls);
 
         return registrationBean;
-    }
+    }*/
 
     @Bean
     public TimeInterceptor timeInterceptor() {

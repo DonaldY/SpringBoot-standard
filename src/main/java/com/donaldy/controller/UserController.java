@@ -33,7 +33,7 @@ public class UserController {
     }
 
     @PostMapping
-    public User getUser(@Valid @RequestBody User user, BindingResult errors) {
+    public User getUser(@Valid User user, BindingResult errors) {
         
         if (errors.hasErrors()) {
             errors.getAllErrors().stream().forEach(

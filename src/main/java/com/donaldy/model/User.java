@@ -18,7 +18,6 @@ public class User {
     @NotBlank(message = "密码不能为空")
     private String password;
 
-    @NotNull(message = "生日不能为空")
     private Date birthday;
 
 }
