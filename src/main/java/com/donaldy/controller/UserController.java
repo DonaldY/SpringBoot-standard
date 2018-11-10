@@ -1,5 +1,6 @@
 package com.donaldy.controller;
 
+import com.donaldy.common.ServerResponse;
 import com.donaldy.model.User;
 import com.donaldy.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,16 +21,16 @@ public class UserController {
     private UserService userService;
 
     @GetMapping(value = "")
-    public List<User> queryUser(@RequestParam String username, User user) {
+    public User queryUser(@RequestParam String username) {
 
-        return this.userService.getUserListByName(username, user);
+        return this.userService.getUser(username, new User());
     }
     
     @GetMapping(value = "/{id:\\d+}")
-    public User getInfo(@PathVariable(value = "id") String id) {
+    public ServerResponse getInfo(@PathVariable(value = "id") String id) {
         User user = new User();
         user.setUsername("Donald");
-        return user;
+        return ServerResponse.createBySuccess(user);
     }
 
     @PostMapping
@@ -43,6 +44,12 @@ public class UserController {
 
         user.setUsername("Donald");
         return user;
+    }
+
+    @GetMapping("/friend")
+    public User getUserFriend(@RequestParam String username) {
+
+        return this.userService.getUserFriend(username);
     }
     
 }

@@ -15,6 +15,7 @@ import java.util.List;
 
 @Slf4j
 @Service
+@Validated
 public class UserServiceImpl implements UserService {
 
     @Async
@@ -35,13 +36,30 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<User> getUserListByName(String username, User _user) {
+    public User getUser(String username, User _user) {
         System.out.println("input user : " + _user);
         System.out.println("username : " + username);
-        List<User> users = new ArrayList<>();
         User user = new User();
-        users.add(user);
-        return users;
+        user.setUsername("DonaldY");
+        user.setPassword("123");
+
+        return user;
+    }
+
+    @Override
+    public User getUserFriend(String username) {
+        validateUserName(username);
+
+        User user = new User();
+        user.setUsername("go away, gay.");
+
+        return user;
+    }
+
+    @Validated
+    private void validateUserName(@NotBlank(message = "用户名不能为空")
+                                  @Length(min = 3, max = 10, message = "用户名长度大于3小于等于10") String username) {
+        System.out.println("go out, you are a gay.");
     }
 
 }

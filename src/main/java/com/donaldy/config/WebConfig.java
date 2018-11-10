@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.validation.beanvalidation.MethodValidationPostProcessor;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 import javax.validation.Validation;
 import javax.validation.Validator;
@@ -20,7 +21,7 @@ import java.util.List;
  * 可加入第三方过滤器
  */
 @Configuration
-public class WebConfig implements WebMvcConfigurer {
+public class WebConfig extends WebMvcConfigurerAdapter {
 
     /*@Override
     public void addInterceptors(InterceptorRegistry registry) {
