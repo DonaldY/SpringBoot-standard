@@ -48,7 +48,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User getUserFriend(String username) {
-        validateUserName(username);
+        // validateUserName(username);
 
         User user = new User();
         user.setUsername("go away, gay.");
@@ -56,7 +56,6 @@ public class UserServiceImpl implements UserService {
         return user;
     }
 
-    @Validated
     private void validateUserName(@NotBlank(message = "用户名不能为空")
                                   @Length(min = 3, max = 10, message = "用户名长度大于3小于等于10") String username) {
         System.out.println("go out, you are a gay.");

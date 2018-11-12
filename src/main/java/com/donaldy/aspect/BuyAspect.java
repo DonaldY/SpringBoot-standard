@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 @Aspect
 @Component
 public class BuyAspect {
-    @Pointcut("execution(public * com.donaldy.service.impl.UserServiceImpl.getUserListByName(..))")
+    @Pointcut("execution(public * com.donaldy.service.impl.UserServiceImpl.executeUserInfo(..))")
     public void buy() {
 
     }
