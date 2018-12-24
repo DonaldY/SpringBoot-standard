@@ -3,16 +3,21 @@ package com.donaldy.controller;
 import com.donaldy.common.ServerResponse;
 import com.donaldy.model.User;
 import com.donaldy.service.UserService;
+import com.donaldy.utils.constraints.annotations.IsMobile;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import javax.validation.constraints.NotBlank;
 import java.util.List;
 
 /**
  * Created by DonaldY on 2018/7/11.
  */
+
+@Validated
 @RequestMapping(value = "/user")
 @RestController
 public class UserController {
@@ -37,7 +42,7 @@ public class UserController {
     public User getUser(@Valid User user, BindingResult errors) {
         
         if (errors.hasErrors()) {
-            errors.getAllErrors().stream().forEach(
+            errors.getAllErrors().forEach(
                 error -> System.out.println(error.getDefaultMessage())
             );
         }
@@ -50,6 +55,12 @@ public class UserController {
     public User getUserFriend(@RequestParam String username) {
 
         return this.userService.getUserFriend(username);
+    }
+
+    @GetMapping("/phone")
+    public String getUserPhone(@IsMobile String phone) {
+
+        return phone;
     }
     
 }
