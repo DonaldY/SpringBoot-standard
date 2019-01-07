@@ -5,6 +5,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.Callable;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 public class LambdaTest {
 
@@ -30,7 +32,7 @@ public class LambdaTest {
             System.out.println(optional.get());
         }*/
 
-        String country;
+        /*String country;
 
         List<String> cities = new ArrayList<>();
         cities.add("Delhi");
@@ -44,7 +46,17 @@ public class LambdaTest {
                 .findAny()
                 .map(v -> "China")
                 .orElse(null);
-        System.out.println(country);
+        System.out.println(country);*/
+
+        LambdaTest lambdaTest = new LambdaTest();
+
+        // lambdaTest.testPredicate();
+
+        // lambdaTest.testMap();
+
+        // lambdaTest.testReduce();
+
+        lambdaTest.testStringList();
     }
 
     public void testRunnable() {
@@ -74,5 +86,75 @@ public class LambdaTest {
         features.forEach(System.out::println);
     }
 
+    public void testPredicate() {
 
+        List<String> languages = Arrays.asList("Java", "JavaScript", "Scala", "C++", "Haskell");
+
+        System.out.println("Language which starts with J: ");
+        filter(languages, (str) -> str.startsWith("J"));
+
+        // OR after
+        filter2(languages, (str) -> str.startsWith("J"));
+
+        Predicate<String> startsWithJ = (n) -> n.startsWith("J");
+        Predicate<String> fourLetterLong = (n) -> n.length() == 4;
+
+        languages.stream().filter(startsWithJ.and(fourLetterLong))
+                .forEach((n) -> System.out.println("Name, which starts with 'J' and four letter long is : " + n ));
+
+    }
+
+    private void filter(List<String> names, Predicate<String> condition) {
+        for (String name : names) {
+            if (condition.test(name)) {
+                System.out.println(name);
+            }
+        }
+    }
+
+    private void filter2 (List < String > names, Predicate < String > condition){
+        names.stream().filter((name) -> (condition.test(name))).forEach((name) -> {
+            System.out.println(name + " ");
+        });
+    }
+
+    public void testMap() {
+        List<Integer> costBeforeTax = Arrays.asList(100, 200, 300, 400, 500);
+
+        for (Integer cost : costBeforeTax) {
+            double price = cost + .12 * cost;
+            System.out.println(price);
+        }
+
+        // 使用lambda表达式
+        costBeforeTax.stream().map((cost) -> cost + .12 * cost)
+                .forEach(System.out::println);
+    }
+
+    public void testReduce() {
+
+        List<Integer> costBeforeTax = Arrays.asList(100, 200, 300, 400, 500);
+        double total = 0;
+        for (Integer cost : costBeforeTax) {
+            double price = cost + .12 * cost;
+            total = total + price;
+        }
+
+        System.out.println("Total : " + total);
+
+        // 之后
+        double bill = costBeforeTax.stream().map((cost) -> cost + .12 * cost)
+                .reduce((sum, cost) -> sum + cost)
+                .get();
+        System.out.println("Bill : " + bill);
+    }
+
+    public void testStringList() {
+
+        List<String> strList = Arrays.asList("English", "Chinese", "French", "KaKoa");
+
+        List<String> filtered = strList.stream().filter(x -> x.length() > 2).collect(Collectors.toList());
+
+        System.out.printf("Original List : %s, filtered list : %s", strList, filtered);
+    }
 }
