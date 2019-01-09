@@ -1,6 +1,8 @@
 package com.donaldy.controller;
 
+import com.donaldy.common.Const;
 import com.donaldy.common.ServerResponse;
+import com.donaldy.handler.RestfulException;
 import com.donaldy.model.User;
 import com.donaldy.model.User2;
 import com.donaldy.service.UserService;
@@ -76,6 +78,8 @@ public class UserController {
                 User2.newBuilder().id(1).firstName("AngularJS-1").lastName("Angular-1").username("angular-1").build(),
                 User2.newBuilder().id(2).firstName("AngularJS-2").lastName("Angular-2").username("angular-2").build()
         );
+
+        // throw new RestfulException(Const.HttpStatusCode.UNAUTHORIZED.getCode(), "error");
 
         return ServerResponse.createBySuccess(new Page<User2>(10, users));
     }
