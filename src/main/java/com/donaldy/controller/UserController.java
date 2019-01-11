@@ -9,12 +9,14 @@ import com.donaldy.service.UserService;
 import com.donaldy.utils.Page;
 import com.donaldy.utils.constraints.annotations.IsMobile;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.ObjectUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
@@ -70,7 +72,7 @@ public class UserController {
         return phone;
     }
 
-    static List<User2> users = Arrays.asList(
+    private List<User2> users = Arrays.asList(
             User2.newBuilder().id(1).firstName("AngularJS-1").lastName("Angular-1").username("angular-1").build(),
             User2.newBuilder().id(2).firstName("AngularJS-2").lastName("Angular-2").username("angular-2").build(),
             User2.newBuilder().id(3).firstName("AngularJS-3").lastName("Angular-3").username("angular-3").build(),
@@ -96,6 +98,21 @@ public class UserController {
         // throw new RestfulException(Const.HttpStatusCode.UNAUTHORIZED.getCode(), "error");
 
         return ServerResponse.createBySuccess(new Page<User2>(users.size(), user2s));
+    }
+
+    @GetMapping("/delete")
+    public ServerResponse deleteUser(@NotNull Integer msgId) {
+
+        User2 user2 = users.stream().filter(t -> t.getId().equals(msgId)).findFirst().orElse(null);
+
+        if (ObjectUtils.isEmpty(user2)) {
+
+            return ServerResponse.createByErrorMessage("找不到这个用户");
+        }
+
+        users.remove(user2.getId());
+
+        return ServerResponse.createBySuccessMessage("删除成功");
     }
     
 }
