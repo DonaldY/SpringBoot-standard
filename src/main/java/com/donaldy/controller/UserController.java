@@ -86,7 +86,7 @@ public class UserController {
     );
 
     @GetMapping("/list")
-    public ServerResponse getUserList(Integer page, Integer pageSize) {
+    public ServerResponse getUserList(Integer page, Integer pageSize) throws InterruptedException {
 
         System.out.println(page + "  " + pageSize);
 
