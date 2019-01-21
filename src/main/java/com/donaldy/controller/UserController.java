@@ -114,5 +114,15 @@ public class UserController {
 
         return ServerResponse.createBySuccessMessage("删除成功");
     }
+
+    @PostMapping("/add")
+    public ServerResponse addUser(@RequestBody User2 user2) {
+
+        System.out.println(user2.toString());
+
+        users.add(user2);
+
+        return ServerResponse.createBySuccess();
+    }
     
 }
