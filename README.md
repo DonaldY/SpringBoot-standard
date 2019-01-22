@@ -61,6 +61,8 @@ mybatis 可以返回 map，controller层可以将map封装进ModelAndView中
 #### 若校验一个实体，可抽象出一个DTO（或者直接使用model，视情况而定）
 才用 JSR-303 注解标记在属性上进行校验
 
+https://blog.csdn.net/fanfan4569/article/details/83656626
+
 ### 插件
 1. mybatis generator
 
