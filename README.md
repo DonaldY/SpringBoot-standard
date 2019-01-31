@@ -182,3 +182,25 @@ public class CorsConfig {
 ## Reactive
 
 ## Lambda
+
+## 时区问题
+
+数据库时间与本机时间对应不上。
+
+原数据库设置为 CST
+
+```java
+public class Application {
+    
+    public static void main(String[] args) {
+        TimeZone.setDefault(TimeZone.getTimeZone("CST"));
+        SpringApplication.run(Application.class, args);
+    }
+}
+```
+
+或者
+
+可以试试在配置文件中添加：
+
+`spring.jackson.time-zone=GMT+8`
