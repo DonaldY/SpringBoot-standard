@@ -1,4 +1,4 @@
-package com.donaldy.handler;
+package com.donaldy.config.handler;
 
 import com.aliyun.oss.ClientException;
 import com.aliyun.oss.OSSException;

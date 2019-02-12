@@ -1,7 +1,6 @@
 package com.donaldy.config;
 
-import com.donaldy.filter.TimeFilter;
-import com.donaldy.interceptor.TimeInterceptor;
+import com.donaldy.config.interceptor.TimeInterceptor;
 import org.hibernate.validator.HibernateValidator;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
@@ -12,13 +11,10 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 import javax.validation.Validation;
 import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * 可加入第三方过滤器

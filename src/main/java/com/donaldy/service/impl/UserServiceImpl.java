@@ -1,6 +1,6 @@
 package com.donaldy.service.impl;
 
-import com.donaldy.handler.AsyncException;
+import com.donaldy.config.handler.AsyncException;
 import com.donaldy.model.User;
 import com.donaldy.service.UserService;
 import lombok.extern.slf4j.Slf4j;
@@ -10,8 +10,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
 import javax.validation.constraints.NotBlank;
-import java.util.ArrayList;
-import java.util.List;
 
 @Slf4j
 @Service

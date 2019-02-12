@@ -1,6 +1,5 @@
 package com.donaldy.config;
 
-import com.donaldy.handler.AsyncExceptionHandler;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.aop.interceptor.AsyncUncaughtExceptionHandler;
 import org.springframework.context.annotation.Configuration;
@@ -26,8 +25,9 @@ public class AsyncConfig implements AsyncConfigurer {
         return executor;
     }
 
-    @Override
+   /* @Override
     public AsyncUncaughtExceptionHandler getAsyncUncaughtExceptionHandler() {
+
         return new AsyncExceptionHandler();
-    }
+    }*/
 }

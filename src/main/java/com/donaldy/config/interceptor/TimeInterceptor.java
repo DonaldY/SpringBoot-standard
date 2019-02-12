@@ -1,4 +1,4 @@
-package com.donaldy.interceptor;
+package com.donaldy.config.interceptor;
 
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;

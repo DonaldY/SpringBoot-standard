@@ -1,4 +1,4 @@
-package com.donaldy.handler;
+package com.donaldy.config.handler;
 
 import lombok.Getter;
 import lombok.Setter;

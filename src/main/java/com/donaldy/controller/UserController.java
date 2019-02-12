@@ -1,8 +1,7 @@
 package com.donaldy.controller;
 
-import com.donaldy.common.Const;
 import com.donaldy.common.ServerResponse;
-import com.donaldy.handler.RestfulException;
+import com.donaldy.config.handler.RestfulException;
 import com.donaldy.model.User;
 import com.donaldy.model.User2;
 import com.donaldy.service.UserService;
@@ -15,9 +14,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
