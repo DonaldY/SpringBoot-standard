@@ -1,7 +1,7 @@
 package com.donaldy.controller;
 
 import com.donaldy.model.FileInfo;
-import org.apache.commons.io.IOUtils;
+import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -18,7 +18,7 @@ import java.util.Date;
 public class FileController {
     
     @PostMapping
-    public FileInfo uplooad(MultipartFile file) throws IOException {
+    public FileInfo upload(MultipartFile file) throws IOException {
         System.out.println(file.getName());
         System.out.println(file.getOriginalFilename());
         System.out.println(file.getSize());
