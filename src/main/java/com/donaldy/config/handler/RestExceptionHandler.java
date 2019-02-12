@@ -26,8 +26,8 @@ public class RestExceptionHandler {
 
     /**
      * 自定义运行异常
-     * @param exception
-     * @return
+     * @param exception 自定义异常
+     * @return          异常信息
      */
     @ExceptionHandler(RestfulException.class)
     @ResponseBody
@@ -39,8 +39,8 @@ public class RestExceptionHandler {
 
     /**
      * 参数不完整(400)
-     * @param exception
-     * @return
+     * @param exception 参数校验错误
+     * @return          异常信息
      */
     @ExceptionHandler(MethodArgumentNotValidException.class)
     @ResponseStatus(code = HttpStatus.BAD_REQUEST)
@@ -54,8 +54,8 @@ public class RestExceptionHandler {
 
     /**
      * 404的拦截.
-     * @param exception
-     * @return
+     * @param exception 找不到路径
+     * @return          异常信息
      */
     @ResponseStatus(code = HttpStatus.NOT_FOUND)
     @ExceptionHandler(NoHandlerFoundException.class)
@@ -69,8 +69,8 @@ public class RestExceptionHandler {
 
     /**
      * 参数格式错误(400)
-     * @param exception
-     * @return
+     * @param exception 参数格式错误
+     * @return          异常信息
      */
     @ExceptionHandler(MethodArgumentTypeMismatchException.class)
     @ResponseBody
@@ -83,8 +83,8 @@ public class RestExceptionHandler {
 
     /**
      * 校验JSR-303
-     * @param exception
-     * @return
+     * @param exception JSR校验失败
+     * @return          异常信息
      */
     @ExceptionHandler(ConstraintViolationException.class)
     @ResponseBody
@@ -98,9 +98,9 @@ public class RestExceptionHandler {
     }
 
     /**
-     * 400错误
-     * @param exception
-     * @return
+     * 缺少参数
+     * @param exception 参数缺少
+     * @return          异常信息
      */
     @ExceptionHandler({MissingServletRequestParameterException.class})
     @ResponseBody
@@ -113,8 +113,8 @@ public class RestExceptionHandler {
 
     /**
      * IO异常(500)
-     * @param exception
-     * @return
+     * @param exception IO异常
+     * @return          异常信息
      */
     @ExceptionHandler(IOException.class)
     @ResponseBody
@@ -127,8 +127,8 @@ public class RestExceptionHandler {
 
     /**
      * OSS client
-     * @param exception
-     * @return
+     * @param exception OSS客户端错误
+     * @return          异常信息
      */
     @ExceptionHandler({ClientException.class})
     @ResponseBody
@@ -141,8 +141,8 @@ public class RestExceptionHandler {
 
     /**
      * OSS 异常(500)
-     * @param exception
-     * @return
+     * @param exception OSS其他异常错误
+     * @return          异常信息
      */
     @ExceptionHandler({OSSException.class})
     @ResponseBody
@@ -155,8 +155,8 @@ public class RestExceptionHandler {
 
     /**
      * 默认异常处理(500)
-     * @param exception
-     * @return
+     * @param exception 其他错误
+     * @return          异常信息
      */
     @ExceptionHandler(Exception.class)
     @ResponseBody
