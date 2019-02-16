@@ -9,6 +9,8 @@ public class User2 {
     private String lastName;
     private String username;
 
+    public User2(){}
+
     private User2(Builder builder) {
         id = builder.id;
         firstName = builder.firstName;

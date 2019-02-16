@@ -113,11 +113,11 @@ public class UserController {
     }
 
     @PostMapping("/add")
-    public ServerResponse addUser(@RequestBody User2 user2) {
+    public ServerResponse addUser(User2 user2) {
 
         System.out.println(user2.toString());
 
-        users.add(user2);
+        // users.add(user2);
 
         return ServerResponse.createBySuccess();
     }
