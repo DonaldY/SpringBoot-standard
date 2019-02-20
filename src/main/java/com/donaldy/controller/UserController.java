@@ -17,6 +17,8 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeoutException;
 import java.util.stream.Collectors;
 
 /**
@@ -120,6 +122,12 @@ public class UserController {
         // users.add(user2);
 
         return ServerResponse.createBySuccess();
+    }
+
+    @GetMapping("/recommend")
+    public void recommendUser() throws InterruptedException, ExecutionException, TimeoutException {
+
+        this.userService.recommendUser();
     }
     
 }

@@ -6,10 +6,12 @@ import com.donaldy.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.scheduling.annotation.Async;
+import org.springframework.scheduling.annotation.AsyncResult;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
 import javax.validation.constraints.NotBlank;
+import java.util.concurrent.*;
 
 @Slf4j
 @Service
@@ -58,5 +60,60 @@ public class UserServiceImpl implements UserService {
                                   @Length(min = 3, max = 10, message = "用户名长度大于3小于等于10") String username) {
         System.out.println("go out, you are a gay.");
     }
+
+    /**
+     * 改为同步非阻塞
+     */
+    @Override
+    public void recommendUser() throws ExecutionException, InterruptedException {
+
+        Future<User> familyFuture = findUserFamily();
+
+        Future<User> friendsFuture = findUserFriends();
+
+        Future<User> strangerFuture = findStranger();
+
+        System.out.println(familyFuture.get());
+
+        System.out.println(friendsFuture.get());
+
+        System.out.println(strangerFuture.get());
+
+    }
+
+    private Future<User> findStranger() {
+
+        loadMock("stranger", 3);
+
+        return new AsyncResult<>(User.newBuilder().username("stranger").build());
+    }
+
+    private Future<User> findUserFriends() {
+
+        loadMock("friend", 2);
+
+        return new AsyncResult<>(User.newBuilder().username("friend").build());
+    }
+
+    private Future<User> findUserFamily() {
+
+        loadMock("family", 1);
+
+        return new AsyncResult<>(User.newBuilder().username("family").build());
+    }
+
+    private void loadMock(String source, int seconds) {
+        try {
+            long startTime = System.currentTimeMillis();
+            long milliseconds = TimeUnit.SECONDS.toMillis(seconds);
+            Thread.sleep(milliseconds);
+            long costTime = System.currentTimeMillis() - startTime;
+            System.out.printf("[线程 : %s] %s 耗时 :  %d 毫秒\n",
+                    Thread.currentThread().getName(), source, costTime);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 
 }

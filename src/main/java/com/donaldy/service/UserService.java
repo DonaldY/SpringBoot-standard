@@ -7,6 +7,8 @@ import org.springframework.validation.annotation.Validated;
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeoutException;
 
 /**
  * Created by DonaldY on 2018/7/11.
@@ -14,11 +16,13 @@ import java.util.List;
 @Validated
 public interface UserService {
 
-    public void executeUserInfo(Integer userId);
+    void executeUserInfo(Integer userId);
 
-    public User getUser(@NotBlank(message = "用户名不能为空")
+    User getUser(@NotBlank(message = "用户名不能为空")
                                         @Length(min = 3, max = 10, message = "用户名长度大于3小于10")String username,
                                         User user);
 
-    public User getUserFriend(String username);
+    User getUserFriend(String username);
+
+    void recommendUser() throws ExecutionException, InterruptedException, TimeoutException;
 }
