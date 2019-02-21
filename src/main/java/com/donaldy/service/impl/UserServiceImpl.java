@@ -67,20 +67,21 @@ public class UserServiceImpl implements UserService {
     @Override
     public void recommendUser() throws ExecutionException, InterruptedException {
 
-        ExecutorService executorService = Executors.newFixedThreadPool(3); // 创建线程池
-        CompletionService completionService = new ExecutorCompletionService(executorService);
+        long startTime = System.currentTimeMillis();
 
-        Future<User> familyFuture = completionService.submit(this::findStranger);
+        ExecutorService executorService = Executors.newFixedThreadPool(3); // 创建线程池
+        CompletionService<User> completionService = new ExecutorCompletionService<>(executorService);
+
+        completionService.submit(new Callable<User>() {
+            @Override
+            public User call() throws Exception {
+                return findStranger();
+            }
+        });
 
         Future<User> friendsFuture = completionService.submit(this::findUserFriends);
 
         Future<User> strangerFuture = completionService.submit(this::findStranger);
-
-        System.out.println(familyFuture.get());
-
-        System.out.println(friendsFuture.get());
-
-        System.out.println(strangerFuture.get());
 
         int count = 0;
         while (count < 3) { // 等待三个任务完成
@@ -88,29 +89,33 @@ public class UserServiceImpl implements UserService {
                 count++;
             }
         }
+
         executorService.shutdown();
+
+        long costTime = System.currentTimeMillis() - startTime;
+        System.out.println("load() 总耗时：" + costTime + " 毫秒");
 
     }
 
-    private Future<User> findStranger() {
+    private User findStranger() {
 
         loadMock("stranger", 3);
 
-        return new AsyncResult<>(User.newBuilder().username("stranger").build());
+        return User.newBuilder().username("stranger").build();
     }
 
-    private Future<User> findUserFriends() {
+    private User findUserFriends() {
 
         loadMock("friend", 2);
 
-        return new AsyncResult<>(User.newBuilder().username("friend").build());
+        return User.newBuilder().username("friend").build();
     }
 
-    private Future<User> findUserFamily() {
+    private User findUserFamily() {
 
         loadMock("family", 1);
 
-        return new AsyncResult<>(User.newBuilder().username("family").build());
+        return User.newBuilder().username("family").build();
     }
 
     public final void load() {
