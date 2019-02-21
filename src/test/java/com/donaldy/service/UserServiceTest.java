@@ -1,6 +1,7 @@
 package com.donaldy.service;
 
 import com.donaldy.LearnApplication;
+import com.donaldy.service.impl.UserServiceImpl;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,5 +22,10 @@ public class UserServiceTest {
     public void test() throws InterruptedException, ExecutionException, TimeoutException {
 
         userService.recommendUser();
+    }
+
+    @Test
+    public void test2() {
+        new UserServiceImpl().load();
     }
 }

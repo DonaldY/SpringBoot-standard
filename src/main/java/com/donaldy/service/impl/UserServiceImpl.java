@@ -67,17 +67,28 @@ public class UserServiceImpl implements UserService {
     @Override
     public void recommendUser() throws ExecutionException, InterruptedException {
 
-        Future<User> familyFuture = findUserFamily();
+        ExecutorService executorService = Executors.newFixedThreadPool(3); // 创建线程池
+        CompletionService completionService = new ExecutorCompletionService(executorService);
 
-        Future<User> friendsFuture = findUserFriends();
+        Future<User> familyFuture = completionService.submit(this::findStranger);
 
-        Future<User> strangerFuture = findStranger();
+        Future<User> friendsFuture = completionService.submit(this::findUserFriends);
+
+        Future<User> strangerFuture = completionService.submit(this::findStranger);
 
         System.out.println(familyFuture.get());
 
         System.out.println(friendsFuture.get());
 
         System.out.println(strangerFuture.get());
+
+        int count = 0;
+        while (count < 3) { // 等待三个任务完成
+            if (completionService.poll() != null) {
+                count++;
+            }
+        }
+        executorService.shutdown();
 
     }
 
@@ -102,6 +113,41 @@ public class UserServiceImpl implements UserService {
         return new AsyncResult<>(User.newBuilder().username("family").build());
     }
 
+    public final void load() {
+        long startTime = System.currentTimeMillis(); // 开始时间
+        doLoad(); // 具体执行
+        long costTime = System.currentTimeMillis() - startTime; // 消耗时间
+        System.out.println("load() 总耗时：" + costTime + " 毫秒");
+    }
+
+    public void doLoad() {  // 并行计算
+        ExecutorService executorService = Executors.newFixedThreadPool(3); // 创建线程池
+        CompletionService completionService = new ExecutorCompletionService(executorService);
+        completionService.submit(this::loadConfigurations, null);      //  耗时 >= 1s
+        completionService.submit(this::loadUsers, null);               //  耗时 >= 2s
+        completionService.submit(this::loadOrders, null);              //  耗时 >= 3s
+
+        int count = 0;
+        while (count < 3) { // 等待三个任务完成
+            if (completionService.poll() != null) {
+                count++;
+            }
+        }
+        executorService.shutdown();
+    }
+
+    protected final void loadConfigurations() {
+        loadMock("loadConfigurations()", 1);
+    }
+
+    protected final void loadUsers() {
+        loadMock("loadUsers()", 2);
+    }
+
+    protected final void loadOrders() {
+        loadMock("loadOrders()", 3);
+    }
+
     private void loadMock(String source, int seconds) {
         try {
             long startTime = System.currentTimeMillis();
@@ -114,6 +160,5 @@ public class UserServiceImpl implements UserService {
             throw new RuntimeException(e);
         }
     }
-
 
 }
