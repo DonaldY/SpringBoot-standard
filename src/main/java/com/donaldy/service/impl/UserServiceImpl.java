@@ -1,12 +1,12 @@
 package com.donaldy.service.impl;
 
+import com.donaldy.utils.ExecutorServiceUtils;
 import com.donaldy.config.handler.AsyncException;
 import com.donaldy.model.User;
 import com.donaldy.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.scheduling.annotation.Async;
-import org.springframework.scheduling.annotation.AsyncResult;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
@@ -69,37 +69,48 @@ public class UserServiceImpl implements UserService {
 
         long startTime = System.currentTimeMillis();
 
-        ExecutorService executorService = Executors.newFixedThreadPool(3); // 创建线程池
-        CompletionService<User> completionService = new ExecutorCompletionService<>(executorService);
+        ExecutorService executorService = ExecutorServiceUtils.getInstance();
 
-        completionService.submit(new Callable<User>() {
-            @Override
-            public User call() throws Exception {
-                return findStranger();
-            }
-        });
+        Future<User> familyFuture = executorService.submit(this::findUserFamily);
 
-        Future<User> friendsFuture = completionService.submit(this::findUserFriends);
+        Future<User> friendsFuture = executorService.submit(this::findUserFriends);
 
-        Future<User> strangerFuture = completionService.submit(this::findStranger);
+        Future<User> strangerFuture = executorService.submit(this::findStranger);
 
-        int count = 0;
-        while (count < 3) { // 等待三个任务完成
-            if (completionService.poll() != null) {
-                count++;
-            }
-        }
 
-        executorService.shutdown();
 
         long costTime = System.currentTimeMillis() - startTime;
         System.out.println("load() 总耗时：" + costTime + " 毫秒");
+    }
 
+    public static void main(String[] args) throws InterruptedException {
+        long millis = System.currentTimeMillis();
+
+        UserServiceImpl userService = new UserServiceImpl();
+
+        CompletableFuture
+                .runAsync(userService::load)
+                .runAsync(userService::load)
+                .runAsync(() -> {
+                    try {
+                        Thread.sleep(1000);
+                        System.out.println(Thread.currentThread().getName());
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                })
+                .whenComplete((result, throwable) -> { // 完成时回调
+                    System.out.println("加载完成 + " + (System.currentTimeMillis() - millis));
+                });
     }
 
     private User findStranger() {
 
         loadMock("stranger", 3);
+
+        log.info("stranger");
+
+        System.out.println("stranger");
 
         return User.newBuilder().username("stranger").build();
     }
@@ -108,12 +119,20 @@ public class UserServiceImpl implements UserService {
 
         loadMock("friend", 2);
 
+        log.info("friend");
+
+        System.out.println("friend");
+
         return User.newBuilder().username("friend").build();
     }
 
     private User findUserFamily() {
 
         loadMock("family", 1);
+
+        log.info("family");
+
+        System.out.println("family");
 
         return User.newBuilder().username("family").build();
     }
