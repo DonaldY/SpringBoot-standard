@@ -71,13 +71,11 @@ public class UserServiceImpl implements UserService {
 
         ExecutorService executorService = ExecutorServiceUtils.getInstance();
 
-        Future<User> familyFuture = executorService.submit(this::findUserFamily);
+        Future<User> familyFuture = executorService.submit(this::findUserFamily, User.newBuilder().build());
 
-        Future<User> friendsFuture = executorService.submit(this::findUserFriends);
+        Future<User> friendsFuture = executorService.submit(this::findUserFriends, User.newBuilder().build());
 
         Future<User> strangerFuture = executorService.submit(this::findStranger);
-
-
 
         long costTime = System.currentTimeMillis() - startTime;
         System.out.println("load() 总耗时：" + costTime + " 毫秒");
