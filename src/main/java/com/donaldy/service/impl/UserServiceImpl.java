@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ObjectUtils;
 import org.springframework.validation.annotation.Validated;
 
 import javax.validation.constraints.NotBlank;
@@ -81,28 +82,54 @@ public class UserServiceImpl implements UserService {
         System.out.println("load() 总耗时：" + costTime + " 毫秒");
     }
 
+    public CompletableFuture<Object> recommendUser2() {
+
+        final CompletableFuture<User> cacheFuture = CompletableFuture.supplyAsync(this::findUserFamily);
+
+        final CompletableFuture<User> dbFuture = CompletableFuture.supplyAsync(this::findUserFriends);
+
+        CompletableFuture<Object> objectCompletableFuture = CompletableFuture.anyOf(cacheFuture, dbFuture);
+
+        try {
+            objectCompletableFuture.get();
+        } catch (InterruptedException | ExecutionException e) {
+            e.printStackTrace();
+        }
+
+        return CompletableFuture.anyOf(cacheFuture, dbFuture);
+    }
+
     public static void main(String[] args) throws InterruptedException {
         long millis = System.currentTimeMillis();
 
-        UserServiceImpl userService = new UserServiceImpl();
+        ExecutorService executorService = ExecutorServiceUtils.getInstance();
 
-        CompletableFuture
-                .runAsync(userService::load)
-                .runAsync(userService::load)
-                .runAsync(() -> {
-                    try {
-                        Thread.sleep(1000);
-                        System.out.println(Thread.currentThread().getName());
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                })
-                .whenComplete((result, throwable) -> { // 完成时回调
-                    System.out.println("加载完成 + " + (System.currentTimeMillis() - millis));
-                });
+        Future<User> userFuture = executorService.submit(() -> {
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                System.out.println("some thing bad happened.");
+            }
+            return User.newBuilder().build();
+        });
+
+        User user = null;
+
+        try {
+            user = userFuture.get(1, TimeUnit.SECONDS);
+        } catch (ExecutionException | TimeoutException e) {
+            userFuture.cancel(true);
+            System.out.println("some bad happened");
+        } finally {
+            executorService.shutdownNow();
+        }
+
+        System.out.println(ObjectUtils.isEmpty(user));
+
+        System.out.println("加载完成 + " + (System.currentTimeMillis() - millis));
     }
 
-    private User findStranger() {
+    public User findStranger() {
 
         loadMock("stranger", 3);
 
