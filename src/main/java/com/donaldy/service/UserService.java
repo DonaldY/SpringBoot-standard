@@ -19,8 +19,8 @@ public interface UserService {
     void executeUserInfo(Integer userId);
 
     User getUser(@NotBlank(message = "用户名不能为空")
-                                        @Length(min = 3, max = 10, message = "用户名长度大于3小于10")String username,
-                                        User user);
+                 @Length(min = 3, max = 10, message = "用户名长度大于3小于10")String username,
+                 User user);
 
     User getUserFriend(String username);
 
