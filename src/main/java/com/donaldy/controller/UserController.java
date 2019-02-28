@@ -4,6 +4,7 @@ import com.donaldy.common.ServerResponse;
 import com.donaldy.config.handler.RestfulException;
 import com.donaldy.model.User;
 import com.donaldy.model.User2;
+import com.donaldy.service.ConditionService;
 import com.donaldy.service.UserService;
 import com.donaldy.utils.Page;
 import com.donaldy.utils.constraints.annotations.IsMobile;
@@ -32,6 +33,9 @@ public class UserController {
     
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private ConditionService conditionService;
 
     @GetMapping(value = "")
     public User queryUser(@RequestParam String username) {
@@ -137,6 +141,12 @@ public class UserController {
     public void recommendUser() throws InterruptedException, ExecutionException, TimeoutException {
 
         this.userService.recommendUser();
+    }
+
+    @GetMapping("/condition")
+    public void condition() {
+
+        this.conditionService.sendMessage();
     }
     
 }
