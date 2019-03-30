@@ -1,7 +1,5 @@
 package com.donaldy.config.handler;
 
-import com.aliyun.oss.ClientException;
-import com.aliyun.oss.OSSException;
 import com.donaldy.common.Const;
 import com.donaldy.common.ServerResponse;
 import lombok.extern.slf4j.Slf4j;
@@ -123,34 +121,6 @@ public class RestExceptionHandler {
         exception.printStackTrace();
         return ServerResponse.createByErrorCodeMessage(Const.HttpStatusCode.INTERNAL_SERVER_ERROR.getCode(),
                 "快递送错了");
-    }
-
-    /**
-     * OSS client
-     * @param exception OSS客户端错误
-     * @return          异常信息
-     */
-    @ExceptionHandler({ClientException.class})
-    @ResponseBody
-    public ServerResponse ossCreateExceptionHandler(OSSException exception) {
-        log.error(exception.getMessage());
-        exception.printStackTrace();
-        return ServerResponse.createByErrorCodeMessage(Const.HttpStatusCode.INTERNAL_SERVER_ERROR.getCode(),
-                "网貌似断开了");
-    }
-
-    /**
-     * OSS 异常(500)
-     * @param exception OSS其他异常错误
-     * @return          异常信息
-     */
-    @ExceptionHandler({OSSException.class})
-    @ResponseBody
-    public ServerResponse ossExceptionHandler(OSSException exception) {
-        log.error(exception.getMessage());
-        exception.printStackTrace();
-        return ServerResponse.createByErrorCodeMessage(Const.HttpStatusCode.INTERNAL_SERVER_ERROR.getCode(),
-                exception.getMessage());
     }
 
     /**

@@ -148,5 +148,15 @@ public class UserController {
 
         this.conditionService.sendMessage();
     }
-    
+
+    @PostMapping("/test/1")
+    public void test(User user) {
+
+        System.out.println(user);
+
+        if (ObjectUtils.isEmpty(user)) {
+            System.out.println("yes");
+        }
+
+    }
 }
