@@ -12,13 +12,19 @@ public class RestTemplateConfig {
     @Value("${http.client.base.uri}")
     private String baseUri;
 
+    @Value("${http.client.read-timeout}")
+    private int readTimeout;
+
+    @Value("${http.client.connect-timeout}")
+    private int connectTimeout;
+
     @Bean
     public RestTemplate restTemplate(RestTemplateBuilder builder) {
 
         return builder
                 .rootUri(baseUri)
-                .setConnectTimeout(2000)
-                .setReadTimeout(2000)
+                .setConnectTimeout(connectTimeout)
+                .setReadTimeout(readTimeout)
                 .build();
     }
 }
