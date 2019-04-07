@@ -10,6 +10,7 @@ import com.donaldy.utils.Page;
 import com.donaldy.utils.constraints.annotations.IsMobile;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.ObjectUtils;
+import org.springframework.util.StopWatch;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -45,8 +46,16 @@ public class UserController {
     
     @GetMapping(value = "/{id:\\d+}")
     public ServerResponse getInfo(@PathVariable(value = "id") String id) {
+
+        StopWatch stopWatch = new StopWatch();
+        stopWatch.start();
+
         User user = new User();
         user.setUsername("Donald");
+
+        stopWatch.stop();
+        System.out.println("time: " + stopWatch.getTotalTimeMillis() + "ms");
+
         return ServerResponse.createBySuccess(user);
     }
 
