@@ -207,3 +207,9 @@ public class Application {
 
 
 ### RestTemplate
+
+> 需要异步方法嘛？
+> 
+> 解决方法：
+> 1. 调用这个方法的方法异步化
+> 2. restTemplate 是异步化的
