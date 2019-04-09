@@ -14,6 +14,8 @@ public class FileTest {
             // 创建
             boolean bool = f.mkdirs();
 
+            System.out.println(f.getName());
+
             System.out.print("Directory created? "+bool);
 
         } catch(Exception e) {

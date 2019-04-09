@@ -7,11 +7,15 @@ public class test {
 
     public static void main(String[] args) {
 
-        List<String> list = new ArrayList<>();
+        /*List<String> list = new ArrayList<>();
 
         for (String str : list) {
 
             System.out.println(str);
-        }
+        }*/
+
+        boolean b = false;
+
+        System.out.println(b ? 1 : 0);
     }
 }
