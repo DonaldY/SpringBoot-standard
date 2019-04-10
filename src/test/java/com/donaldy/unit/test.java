@@ -1,21 +1,13 @@
 package com.donaldy.unit;
 
-import java.util.ArrayList;
-import java.util.List;
+import org.hashids.Hashids;
 
 public class test {
 
     public static void main(String[] args) {
 
-        /*List<String> list = new ArrayList<>();
+        Hashids hashids = new Hashids("Donald", 10);
 
-        for (String str : list) {
-
-            System.out.println(str);
-        }*/
-
-        boolean b = false;
-
-        System.out.println(b ? 1 : 0);
+        System.out.println(hashids.encode(221432423543535L));
     }
 }
