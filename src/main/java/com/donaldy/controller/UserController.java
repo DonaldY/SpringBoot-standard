@@ -2,12 +2,14 @@ package com.donaldy.controller;
 
 import com.donaldy.common.ServerResponse;
 import com.donaldy.config.handler.RestfulException;
+import com.donaldy.event.EventRegister;
 import com.donaldy.model.User;
 import com.donaldy.model.User2;
 import com.donaldy.service.ConditionService;
 import com.donaldy.service.UserService;
 import com.donaldy.utils.Page;
 import com.donaldy.utils.constraints.annotations.IsMobile;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.ObjectUtils;
 import org.springframework.util.StopWatch;
@@ -27,6 +29,7 @@ import java.util.stream.Collectors;
  * Created by DonaldY on 2018/7/11.
  */
 
+@Slf4j
 @Validated
 @RequestMapping(value = "/user")
 @RestController
@@ -37,6 +40,9 @@ public class UserController {
 
     @Autowired
     private ConditionService conditionService;
+
+    @Autowired
+    private EventRegister eventRegister;
 
     @GetMapping(value = "")
     public User queryUser(@RequestParam String username) {
@@ -167,5 +173,15 @@ public class UserController {
             System.out.println("yes");
         }
 
+    }
+
+    @GetMapping("/exception/test")
+    public void testException() {
+
+        log.info("start api");
+
+        eventRegister.sendMessage("Web api exception!!");
+
+        log.info("return api");
     }
 }
