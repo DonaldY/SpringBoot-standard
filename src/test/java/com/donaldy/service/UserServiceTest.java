@@ -18,6 +18,9 @@ public class UserServiceTest {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private HttpClientService httpClientService;
+
     @Test
     public void test() throws InterruptedException, ExecutionException, TimeoutException {
 
@@ -27,5 +30,11 @@ public class UserServiceTest {
     @Test
     public void test2() {
         new UserServiceImpl().load();
+    }
+
+    @Test
+    public void test3() {
+
+        httpClientService.test4();
     }
 }
