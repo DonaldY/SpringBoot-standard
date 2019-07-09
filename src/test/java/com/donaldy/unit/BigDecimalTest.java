@@ -32,6 +32,7 @@ public class BigDecimalTest {
         System.out.println(b1);
         System.out.println(b2);
         System.out.println(b3);
+        System.out.println(b3.intValue());
         System.out.println(b2.intValue());
     }
 
@@ -41,5 +42,14 @@ public class BigDecimalTest {
         BigDecimal b1 = new BigDecimal(10240.99999999);
 
         System.out.println(b1);
+    }
+
+    @Test
+    public void test4() {
+
+        double d = 0.09;
+        BigDecimal bigDecimal=new BigDecimal(d);
+        System.out.println(bigDecimal);
+        System.out.println(d);
     }
 }
