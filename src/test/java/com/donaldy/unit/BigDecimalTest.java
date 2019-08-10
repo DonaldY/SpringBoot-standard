@@ -23,10 +23,12 @@ public class BigDecimalTest {
     public void test2() {
 
         int x = (int) 1023.99999999999999;
+        double x2 = 1023.999999;
 
         BigDecimal b1 = new BigDecimal(x);
         BigDecimal b2 = new BigDecimal(1023.99999999999);
         BigDecimal b3 = new BigDecimal("1023.9999999999");
+        BigDecimal b4 = new BigDecimal(String.valueOf(x2));
 
         System.out.println(x);
         System.out.println(b1);
@@ -34,6 +36,7 @@ public class BigDecimalTest {
         System.out.println(b3);
         System.out.println(b3.intValue());
         System.out.println(b2.intValue());
+        System.out.println(b4);
     }
 
     @Test
