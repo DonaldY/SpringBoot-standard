@@ -8,7 +8,6 @@ import java.util.List;
 
 @Data
 public class Page<T> implements Serializable {
-    private static final long serialVersionUID = -1L;
     private int page = 1;
     private int pageSize = 10;
     private int totalNum;
