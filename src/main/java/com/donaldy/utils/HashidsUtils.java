@@ -57,17 +57,17 @@ public class HashidsUtils {
     public static void main(String[] args) {
         Hashids hashids = new Hashids("td-object-service");
 
-        String hash = hashids.encode(1234555L);
+        String hash = hashids.encode(1350508287623328L);
 
         //String hash = hashids.encodeHex("12321321321321321312321321");
 
         System.out.println("encode : " + hash);
 
-        long [] arr = hashids.decode("123444");
+        /*long [] arr = hashids.decode("123444");
 
         System.out.println(Arrays.toString(arr));
 
-        System.out.println("decode : " + arr[0]);
+        System.out.println("decode : " + arr[0]);*/
 
         // System.out.println("decode : " + hashids.decodeHex(hash));
 
