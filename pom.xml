@@ -58,6 +58,7 @@
 		<mysql.connector.version>6.0.6</mysql.connector.version>
 		<protobuf.version>3.5.1</protobuf.version>
 		<grpc.version>1.11.0</grpc.version>
+		<poi.version>3.9</poi.version>
 	</properties>
 
 	<dependencyManagement>
@@ -227,6 +228,23 @@
 			<artifactId>pdfbox</artifactId>
 			<version>2.0.19</version>
 		</dependency>
+
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi</artifactId>
+			<version>${poi.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-scratchpad</artifactId>
+			<version>${poi.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-ooxml</artifactId>
+			<version>${poi.version}</version>
+		</dependency>
+
 
 	</dependencies>
 
