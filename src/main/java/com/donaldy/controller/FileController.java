@@ -26,7 +26,8 @@ public class FileController {
         System.out.println(file.getName());
         System.out.println(file.getOriginalFilename());
         System.out.println(file.getSize());
-        
+        System.out.println("contentType : " + file.getContentType());
+
         return null;
     }
     
@@ -40,6 +41,22 @@ public class FileController {
 
             response.setContentType("application/x-download");
             response.addHeader("Content-Disposition", "attachment;filename=test.txt");
+
+            IOUtils.copy(inputStream, outputStream);
+            outputStream.flush();
+        }
+    }
+
+    @GetMapping()
+    public void download(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String folder = "/home/donald/Documents/Percent/File/BLing/Docs/ceph-script/office-template/template.docx";
+        try(
+                InputStream inputStream = new FileInputStream(new File(folder));
+                OutputStream outputStream = response.getOutputStream();
+        ) {
+
+            response.setContentType("application/x-download");
+            response.addHeader("Content-Disposition", "attachment;filename=template.docx");
 
             IOUtils.copy(inputStream, outputStream);
             outputStream.flush();
