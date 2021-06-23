@@ -52,7 +52,7 @@ public class FileController {
         String folder = "/home/donald/Documents/Percent/File/BLing/Docs/ceph-script/office-template/template.docx";
         try(
                 InputStream inputStream = new FileInputStream(new File(folder));
-                OutputStream outputStream = response.getOutputStream();
+                OutputStream outputStream = response.getOutputStream()
         ) {
 
             response.setContentType("application/x-download");
@@ -63,6 +63,11 @@ public class FileController {
         }
     }
 
+    /**
+     * 是否可以用上 NIO 之后测试
+     * @param request 请求
+     * @param response 返回
+     */
     @GetMapping("/download")
     public void downloadFiles(HttpServletRequest request, HttpServletResponse response){
 
