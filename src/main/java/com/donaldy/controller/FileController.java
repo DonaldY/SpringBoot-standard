@@ -47,11 +47,16 @@ public class FileController {
         }
     }
 
-    @GetMapping()
-    public void download(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        String folder = "/home/donald/Documents/Percent/File/BLing/Docs/ceph-script/office-template/template.docx";
+    @GetMapping("")
+    public void download(HttpServletResponse response) throws IOException {
+
+        long startTime = System.currentTimeMillis();
+
+        System.out.println("开始下载： " + startTime);
+
+        String filePath = "/home/donald/Documents/Percent/File/BLing/Docs/ceph-script/office-template/template.docx";
         try(
-                InputStream inputStream = new FileInputStream(new File(folder));
+                InputStream inputStream = new FileInputStream(new File(filePath));
                 OutputStream outputStream = response.getOutputStream()
         ) {
 
@@ -61,6 +66,8 @@ public class FileController {
             IOUtils.copy(inputStream, outputStream);
             outputStream.flush();
         }
+
+        System.out.println("下载结束, 花费时间： " + (System.currentTimeMillis() - startTime) / 1000);
     }
 
     /**
