@@ -22,11 +22,27 @@ import java.util.zip.ZipOutputStream;
 public class FileController {
     
     @PostMapping
-    public FileInfo upload(MultipartFile file) throws IOException {
+    public FileInfo upload(MultipartFile file) throws IOException, InterruptedException {
         System.out.println(file.getName());
         System.out.println(file.getOriginalFilename());
         System.out.println(file.getSize());
         System.out.println("contentType : " + file.getContentType());
+
+        Thread.sleep(1000);
+
+        System.out.println("start upload");
+
+        try (BufferedInputStream in = new BufferedInputStream(file.getInputStream());
+             FileOutputStream fileOutputStream = new FileOutputStream(file.getOriginalFilename())) {
+
+            byte dataBuffer[] = new byte[1024];
+            int bytesRead;
+            while ((bytesRead = in.read(dataBuffer, 0, 1024)) != -1) {
+                fileOutputStream.write(dataBuffer, 0, bytesRead);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         return null;
     }
