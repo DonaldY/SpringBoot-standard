@@ -20,6 +20,12 @@ import java.util.zip.ZipOutputStream;
 @RestController
 @RequestMapping("/file")
 public class FileController {
+
+    @GetMapping("/ping")
+    public String ping() {
+
+        return "pong";
+    }
     
     @PostMapping
     public FileInfo upload(MultipartFile file) throws IOException, InterruptedException {
