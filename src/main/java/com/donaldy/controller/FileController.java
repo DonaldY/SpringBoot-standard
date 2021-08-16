@@ -26,6 +26,14 @@ public class FileController {
 
         return "pong";
     }
+
+    @PostMapping("/post")
+    public String post(@RequestBody Object object) {
+
+        System.out.println(object.toString());
+
+        return "post";
+    }
     
     @PostMapping
     public FileInfo upload(MultipartFile file) throws IOException, InterruptedException {
