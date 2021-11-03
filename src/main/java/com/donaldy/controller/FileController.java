@@ -108,8 +108,6 @@ public class FileController {
 
         File file = new File(filePath);
 
-        long startTime = System.currentTimeMillis();
-
         //开始下载位置
         long startByte = 0;
         //结束下载位置
@@ -162,10 +160,12 @@ public class FileController {
         //Content-Range 表示响应了多少数据，格式为：[要下载的开始位置]-[结束位置]/[文件总大小]
         response.setHeader("Content-Range", "bytes " + startByte + "-" + endByte + "/" + file.length());
 
+        // 若range有效，则 206 并包含部分文件
+        // 若range无效，则 200 完全文件
         response.setStatus(response.SC_OK);
         response.setContentType(contentType);
 
-        BufferedOutputStream outputStream = null;
+        BufferedOutputStream outputStream;
         RandomAccessFile randomAccessFile = null;
         //已传送数据大小
         long transmitted = 0;
