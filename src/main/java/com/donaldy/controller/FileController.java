@@ -8,6 +8,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -162,7 +163,7 @@ public class FileController {
 
         // 若range有效，则 206 并包含部分文件
         // 若range无效，则 200 完全文件
-        response.setStatus(response.SC_OK);
+        response.setStatus(response.SC_PARTIAL_CONTENT);
         response.setContentType(contentType);
 
         BufferedOutputStream outputStream;
@@ -184,7 +185,6 @@ public class FileController {
             if (transmitted < contentLength) {
                 len = randomAccessFile.read(buff, 0, (int) (contentLength - transmitted));
                 outputStream.write(buff, 0, len);
-                transmitted += len;
             }
 
             outputStream.flush();
