@@ -10,6 +10,7 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.context.request.async.DeferredResult;
 
 import javax.validation.constraints.NotBlank;
 import java.util.concurrent.*;
@@ -18,6 +19,25 @@ import java.util.concurrent.*;
 @Service
 @Validated
 public class UserServiceImpl implements UserService {
+
+    @Async
+    @Override
+    public void scanQrCode(DeferredResult<String> result) {
+
+        log.info("---> 开始业务调用");
+
+        // 模拟多次查询
+        // 例如：每秒查询1次 redis
+        try {
+            Thread.sleep(4000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        log.info("---> 结束业务调用");
+
+        result.setResult("扫描成功");
+    }
 
     @Async
     @Override

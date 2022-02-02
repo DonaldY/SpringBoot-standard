@@ -3,6 +3,7 @@ package com.donaldy.service;
 import com.donaldy.model.User;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.context.request.async.DeferredResult;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
@@ -25,4 +26,6 @@ public interface UserService {
     User getUserFriend(String username);
 
     void recommendUser() throws ExecutionException, InterruptedException, TimeoutException;
+
+    void scanQrCode(DeferredResult<String> result);
 }

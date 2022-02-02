@@ -12,7 +12,6 @@ import org.springframework.web.context.request.async.DeferredResult;
 
 import java.util.concurrent.Callable;
 
-@ConditionalOnProperty(name = "share.open", havingValue = "true")
 @Slf4j
 @RestController
 @RequestMapping("/async")
@@ -36,11 +35,33 @@ public class AsyncController {
 
     @GetMapping(value = "/deferred")
     public DeferredResult<String> DeferredWay() {
-        log.info("enter deferred");
-        DeferredResult<String> result = new DeferredResult<>();
-        result.setResult("hello deferred");
-        log.info("exit deferred");
+        log.info("===> 开始 deferred");
+        DeferredResult<String> result = new DeferredResult<>(5000L, "默认值");
+        result.onTimeout(() -> log.info("deferred 调用超时"));
+        result.onCompletion(() -> log.info("deferred 调用完成"));
+
+        // 异步调用：业务处理
+        // 比如多次循环访问 redis ，查询二维码(qrcode)状态
+        userService.scanQrCode(result);
+
+        log.info("===> 结束 deferred");
         return result;
+    }
+
+    @GetMapping("/sync")
+    public String sync() {
+
+        log.info("===> 开始 sync");
+
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        log.info("===> 结束 sync");
+
+        return "sync";
     }
 
     @GetMapping(value = "/callable")
