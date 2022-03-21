@@ -1,9 +1,11 @@
 package com.donaldy.common;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import lombok.ToString;
 
 import java.io.Serializable;
 
+@ToString
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ServerResponse<T> implements Serializable {
     private int code;

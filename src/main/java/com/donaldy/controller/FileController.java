@@ -35,6 +35,12 @@ public class FileController {
 
         return "post";
     }
+
+    @GetMapping("/delay")
+    public String delay(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        response.setContentLength(0);
+        return "post";
+    }
     
     @PostMapping
     public FileInfo upload(MultipartFile file) throws IOException, InterruptedException {
