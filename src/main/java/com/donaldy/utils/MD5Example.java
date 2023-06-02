@@ -24,7 +24,7 @@ public class MD5Example {
     }
 
     public static void main(String[] args) {
-        String timestamp = "2023-06-02 16:00:00";
+        String timestamp = "2023-06-02 17:40:00";
         String key = "0c038af6bfbeb7277e40e3f9c0ec87fd";
         String secret = "10f1860a63aa07e924475d6057d84289";
         String md5 = getMD5(key + secret + timestamp );
@@ -33,6 +33,7 @@ public class MD5Example {
         System.out.println(str.length());
 
         System.out.println(executeResId("在开车"));
+        System.out.println(executeClientId());
     }
 
     private static String executeResId(String resId) {
@@ -46,5 +47,24 @@ public class MD5Example {
             return matcher.group();
         }
         return resId;
+    }
+
+    public static String executeClientId() {
+//        String str = "liuyf1@pingpongx.com已经开通了，已经用了三四年";
+        String str = "liuyf1@pingpongx.com";
+        Pattern pattern = Pattern.compile("\\b[\\w.%-]+@[\\w.-]+\\.[A-Za-z]{2,6}");
+
+        // 创建Matcher对象
+        Matcher matcher = pattern.matcher(str);
+
+        // 查找匹配的邮箱
+        if (matcher.find()) {
+            String match = matcher.group();
+            System.out.println(match);
+            return match;
+        } else {
+            System.out.println("未匹配到邮箱");
+        }
+        return "";
     }
 }
