@@ -12,9 +12,12 @@ public class DigestUtilsExample {
 //        String sha256 = DigestUtils.sha256Hex(str); // 计算SHA-256散列值
 //        String sha384 = DigestUtils.sha384Hex(str); // 计算SHA-384散列值
 //        String sha512 = DigestUtils.sha512Hex(str); // 计算SHA-512散列值
-
-        String str = "Hello, World!";
-        String md5 = DigestUtils.md5Hex(str);
-        System.out.println(md5);
+//        String md5 = DigestUtils.md5Hex(str);
+        String email = "luchenhui@udesk.cn";
+        String key = "pingpong123";
+        long timestamp = System.currentTimeMillis() / 1000;
+        System.out.println(timestamp);
+        String str = DigestUtils.sha1Hex(email + "&" + key + "&" + timestamp);
+        System.out.println(str);
     }
 }
