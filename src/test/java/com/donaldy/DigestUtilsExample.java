@@ -14,7 +14,7 @@ public class DigestUtilsExample {
 //        String sha512 = DigestUtils.sha512Hex(str); // 计算SHA-512散列值
 //        String md5 = DigestUtils.md5Hex(str);
         String email = "luchenhui@udesk.cn";
-        String key = "pingpong123";
+        String key = "5e444e7e33574139afcc6f67e0fa960a";
         long timestamp = System.currentTimeMillis() / 1000;
         System.out.println(timestamp);
         String str = DigestUtils.sha1Hex(email + "&" + key + "&" + timestamp);
