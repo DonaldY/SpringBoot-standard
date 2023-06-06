@@ -24,13 +24,12 @@ public class MD5Example {
     }
 
     public static void main(String[] args) {
-        String timestamp = "2023-06-02 22:40:00";
+        String timestamp = "2023-06-05 23:10:00";
         String key = "0c038af6bfbeb7277e40e3f9c0ec87fd";
         String secret = "10f1860a63aa07e924475d6057d84289";
         String md5 = getMD5(key + secret + timestamp );
         System.out.println(md5);
-        String str = "user_sn:SYSUSER|958da0e93a5263747e74d9d557b2a859;user_name:ppzn0001;number_status:100;area_code:浙江省宁波市;recordfile:/20230601/202306011547219859_outbound_kj830116_ppzn0001_13906611839.wav;started_at:2023-06-01 15:47:12;endreason:对方挂机;connected_at:2023-06-01 15:47:21;disconnected_at:2023-06-01 15:47:34;is_wechat:0;recordpath:/mnt/record;status:F;";
-        System.out.println(str.length());
+
 
         System.out.println(executeResId("在开车"));
         System.out.println(executeClientId());
