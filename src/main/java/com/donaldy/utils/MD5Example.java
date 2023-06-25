@@ -24,7 +24,7 @@ public class MD5Example {
     }
 
     public static void main(String[] args) {
-        String timestamp = "2023-06-05 23:10:00";
+        String timestamp = "2023-06-20 20:00:00";
         String key = "0c038af6bfbeb7277e40e3f9c0ec87fd";
         String secret = "10f1860a63aa07e924475d6057d84289";
         String md5 = getMD5(key + secret + timestamp );

@@ -111,7 +111,7 @@ public class FileController {
     public void chunkDownload(@RequestHeader(value = "Range") String range,
                               HttpServletRequest request, HttpServletResponse response) {
 
-        String filePath = "/home/donald/Documents/Percent/File/BLing/Docs/ceph-script/office-template/template.docx";
+        String filePath = "/Users/yangyf/Downloads/2023061811191521329.xls";
 
         File file = new File(filePath);
 
