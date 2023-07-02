@@ -233,21 +233,21 @@
 			<version>2.0.19</version>
 		</dependency>
 
-		<dependency>
-			<groupId>org.apache.poi</groupId>
-			<artifactId>poi</artifactId>
-			<version>${poi.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.poi</groupId>
-			<artifactId>poi-scratchpad</artifactId>
-			<version>${poi.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.poi</groupId>
-			<artifactId>poi-ooxml</artifactId>
-			<version>${poi.version}</version>
-		</dependency>
+<!--		<dependency>-->
+<!--			<groupId>org.apache.poi</groupId>-->
+<!--			<artifactId>poi</artifactId>-->
+<!--			<version>${poi.version}</version>-->
+<!--		</dependency>-->
+<!--		<dependency>-->
+<!--			<groupId>org.apache.poi</groupId>-->
+<!--			<artifactId>poi-scratchpad</artifactId>-->
+<!--			<version>${poi.version}</version>-->
+<!--		</dependency>-->
+<!--		<dependency>-->
+<!--			<groupId>org.apache.poi</groupId>-->
+<!--			<artifactId>poi-ooxml</artifactId>-->
+<!--			<version>${poi.version}</version>-->
+<!--		</dependency>-->
 
 		<dependency>
 			<groupId>org.apache.httpcomponents</groupId>
@@ -284,6 +284,12 @@
 			<artifactId>mockwebserver</artifactId>
 			<version>${com.squareup.okhttp3.version}</version>
 			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>easyexcel</artifactId>
+			<version>3.3.2</version>
 		</dependency>
 
 	</dependencies>
