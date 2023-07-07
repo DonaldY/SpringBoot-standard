@@ -30,6 +30,8 @@ public class MD5Example {
         String md5 = getMD5(key + secret + timestamp );
         System.out.println(md5);
 
+        System.out.println(getMD5("123"));
+
 
         System.out.println(executeResId("在开车"));
         System.out.println(executeClientId());

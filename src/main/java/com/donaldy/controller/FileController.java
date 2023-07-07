@@ -84,21 +84,21 @@ public class FileController {
         }
     }
 
-    @GetMapping("")
+    @GetMapping("/download1")
     public void download(HttpServletResponse response) throws IOException {
 
         long startTime = System.currentTimeMillis();
 
         System.out.println("开始下载： " + startTime);
 
-        String filePath = "/home/donald/Documents/Percent/File/BLing/Docs/ceph-script/office-template/template.docx";
+        String filePath = "/Users/yangyf/Downloads/8005745-20230628142914-18129911513-8002--record-medias_1-1687933754.62355.mp3";
         try(
                 InputStream inputStream = new FileInputStream(new File(filePath));
                 OutputStream outputStream = response.getOutputStream()
         ) {
 
             response.setContentType("application/x-download");
-            response.addHeader("Content-Disposition", "attachment;filename=template.docx");
+            response.addHeader("Content-Disposition", "attachment;filename=62355.mp3");
 
             IOUtils.copy(inputStream, outputStream);
             outputStream.flush();
