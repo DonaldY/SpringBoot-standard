@@ -10,7 +10,7 @@ public class UnmodifiableCollections {
 
         Map<String, String> modifiableMap = new HashMap<>();
         modifiableMap.put("test1", "test1");
-        modifiableMap.put("test2", "test2");
+        modifiableMap.put("test2", "test2.json");
 
         modifiableMap = Collections.unmodifiableMap(modifiableMap);
 
