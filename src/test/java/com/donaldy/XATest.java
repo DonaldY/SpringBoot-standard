@@ -15,6 +15,17 @@ import java.util.List;
  */
 public class XATest {
     @Test
+    public void test2() {
+        float  f1 = 10.0f;
+        Float f2 = Float.valueOf(10);
+        if (f1 == f2) {
+            System.out.println("equal");
+        } else {
+            System.out.println("not equal");
+        }
+    }
+
+    @Test
     public void test() {
         String url = "http://clink2-sh-voice.oss-cn-shanghai.aliyuncs.com/28062023/record/8005745/8005745-20230628142914-18129911513-8002--record-medias_1-1687933754.62355.mp3?Expires=1688701356&OSSAccessKeyId=LTAI5t7BX4C51jMAKtyebBcJ&Signature=JmdZ10uThZwqsO6gPKGQDosEDvs%3D&response-content-disposition=attachment%3B%20filename%3D8005745-20230628142914-18129911513-8002--record-medias_1-1687933754.62355.mp3";
         System.out.println(url.replace("http", "https"));
