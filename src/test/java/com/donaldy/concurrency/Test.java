@@ -22,6 +22,7 @@ public class Test {
         List<Map<String, String>> listMap = JSONObject.parseObject(json, new TypeReference<List<Map<String, String>>>() {});
         for (Map<String, String> map : listMap) {
             System.out.println(map.getOrDefault("companyName", ""));
+//            System.out.println(map.getOrDefault("bossId", ""));
         }
     }
 
