@@ -18,4 +18,11 @@ public class UdeskTest {
         String str = DigestUtils.sha1Hex(email + "&" + key + "&" + timestamp);
         System.out.println(str);
     }
+
+    @Test
+    public void test2() {
+        long tt = 1695011082000L;
+        System.out.println(tt);
+        System.out.println(Long.MAX_VALUE);
+    }
 }
