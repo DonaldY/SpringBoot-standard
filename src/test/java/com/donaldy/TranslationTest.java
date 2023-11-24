@@ -16,7 +16,8 @@ public class TranslationTest {
 
     @Test
     public void test() {
-        String input = "用户不存在clientId: [13323123], msg: [123]";
+        String input = "[va换汇]获取实时汇率为空:[123]->[456]";
+        System.out.println("原文本：" + input);
 
         // 提取 [] 中的数据并输出为 List
         List<String> extractedDataList = extractDataList(input);
