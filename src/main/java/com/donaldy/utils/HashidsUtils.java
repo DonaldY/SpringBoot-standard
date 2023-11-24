@@ -69,7 +69,7 @@ public class HashidsUtils {
 
         System.out.println("decode : " + arr[0]);*/
 
-        // System.out.println("decode : " + hashids.decodeHex(hash));
+        System.out.println("decode : " + Arrays.toString(hashids.decode(hash)));
 
     }
 

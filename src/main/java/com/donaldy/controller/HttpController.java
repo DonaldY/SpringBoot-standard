@@ -5,6 +5,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletResponse;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author donald
@@ -20,5 +22,15 @@ public class HttpController {
         response.setHeader("expire ", "-1");
         response.setHeader("Content-Length", "0");
 
+    }
+
+    @GetMapping("/test2")
+    public Map<String, String> ping2(HttpServletResponse response) {
+        response.setStatus(500);
+        Map<String, String> map = new HashMap<>();
+        map.put("code1", "111");
+        //map.put("message", null);
+
+        return map;
     }
 }
