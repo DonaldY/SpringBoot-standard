@@ -26,6 +26,9 @@ public class TranslationTest {
         // 提取文本，保留方括号
         String extractedText = extractText(input);
         System.out.println("提取的文本：" + extractedText);
+
+        String output = fillData("[]Get real-time exchange rate is empty:[]->[]", extractedDataList);
+        System.out.println("返回数据：" + output);
     }
 
     private static List<String> extractDataList(String input) {
