@@ -16,7 +16,7 @@ public class TranslationTest {
 
     @Test
     public void test() {
-        String input = "[va换汇]获取实时汇率为空:[123]->[456]";
+        String input = "[va换汇]获取实时汇率为空:{123}->{456}";
         System.out.println("原文本：" + input);
 
         // 提取 [] 中的数据并输出为 List
@@ -27,12 +27,12 @@ public class TranslationTest {
         String extractedText = extractText(input);
         System.out.println("提取的文本：" + extractedText);
 
-        String output = fillData("[]Get real-time exchange rate is empty:[]->[]", extractedDataList);
+        String output = fillData("[va换汇]Get real-time exchange rate is empty:{}->{}", extractedDataList);
         System.out.println("返回数据：" + output);
     }
 
     private static List<String> extractDataList(String input) {
-        Pattern pattern = Pattern.compile("\\[(.*?)\\]");
+        Pattern pattern = Pattern.compile("\\{(.*?)\\}");
         Matcher matcher = pattern.matcher(input);
 
         List<String> extractedDataList = new ArrayList<>();
@@ -43,13 +43,13 @@ public class TranslationTest {
     }
 
     private static String extractText(String input) {
-        return input.replaceAll("\\[.*?\\]", "[]");
+        return input.replaceAll("\\{.*?\\}", "{}");
     }
 
     @Test
     public void test2() {
         List<String> dataList = Arrays.asList("13323123", "123");
-        String input = "用户不存在clientId: [], msg: []";
+        String input = "用户不存在clientId: {}, msg: {}";
 
         // 将列表中的数据填充到文本中的 []
         String filledText = fillData(input, dataList);
@@ -59,7 +59,7 @@ public class TranslationTest {
     private static String fillData(String input, List<String> dataList) {
         String filledText = input;
         for (String data : dataList) {
-            filledText = filledText.replaceFirst("\\[]", "[" + data + "]");
+            filledText = filledText.replaceFirst("\\{}", "{" + data + "}");
         }
         return filledText;
     }
