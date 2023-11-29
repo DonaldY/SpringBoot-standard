@@ -63,4 +63,10 @@ public class TranslationTest {
         }
         return filledText;
     }
+
+    @Test
+    public void test3() {
+        String query = "123123";
+        System.out.println(query.substring(3));
+    }
 }
