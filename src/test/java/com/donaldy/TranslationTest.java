@@ -32,7 +32,7 @@ public class TranslationTest {
     }
 
     private static List<String> extractDataList(String input) {
-        Pattern pattern = Pattern.compile("\\{(.*?)\\}");
+        Pattern pattern = Pattern.compile("\\{(.*?)}");
         Matcher matcher = pattern.matcher(input);
 
         List<String> extractedDataList = new ArrayList<>();
@@ -43,7 +43,7 @@ public class TranslationTest {
     }
 
     private static String extractText(String input) {
-        return input.replaceAll("\\{.*?\\}", "{}");
+        return input.replaceAll("\\{.*?}", "{}");
     }
 
     @Test
