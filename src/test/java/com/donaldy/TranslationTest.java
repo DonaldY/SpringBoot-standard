@@ -66,7 +66,13 @@ public class TranslationTest {
 
     @Test
     public void test3() {
-        String query = "123123";
-        System.out.println(query.substring(3));
+//        String query = "123123";
+//        System.out.println(query.substring(3));
+
+        String str = "[va换汇]获取实时汇率为空:{123}->{456}"; // 带有大括号的字符串
+
+        // 使用正则表达式去除大括号
+        String result = str.replaceAll("[{}]", "");
+        System.out.println(result); // 输出：Hello, World!
     }
 }
