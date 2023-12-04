@@ -20,10 +20,16 @@ public class Test {
     public void test3() throws IOException {
         String json = getStr("/Users/yangyf/Documents/Code/java/SpringBoot-standard/src/main/resources/test.json");
         List<Map<String, String>> listMap = JSONObject.parseObject(json, new TypeReference<List<Map<String, String>>>() {});
+        String sql = "INSERT INTO translation (tenantId, code, lang, translation) VALUES ('";
         for (Map<String, String> map : listMap) {
-            System.out.println(map.getOrDefault("companyName", ""));
-//            System.out.println(map.getOrDefault("bossId", ""));
+            String tenantId = "flowmore";
+            String code = map.getOrDefault("query", "");
+            String lang = map.getOrDefault("targetLang", "");
+            String translation = map.getOrDefault("target", "");
+            String realSql = sql + tenantId + "', '" + code + "', '" + lang + "', '" + translation + "')";
+            System.out.println(realSql);
         }
+        // System.out.println(listMap.size());
     }
 
     static String getStr(String filePath) throws IOException {
