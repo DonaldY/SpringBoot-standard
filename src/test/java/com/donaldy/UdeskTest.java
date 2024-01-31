@@ -5,6 +5,8 @@ import org.junit.Test;
 
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * @author donald
@@ -27,5 +29,28 @@ public class UdeskTest {
         long tt = 1695011082000L;
         System.out.println(tt);
         System.out.println(Long.MAX_VALUE);
+    }
+
+    @Test
+    public void test3() {
+        String text = "2209300002742224 钻石会员 KYC: Passed";
+//        String text = "2209300002742224";
+//        String text = "浙江杭州联通(1704848305)";
+//        String text = "862401240110825607";
+
+        String extractedText = extractNumber(text);
+        System.out.println("Extracted text: " + extractedText);
+    }
+
+    private static String extractNumber(String text) {
+        String pattern = "^([0-9]+)";
+        Pattern regex = Pattern.compile(pattern);
+        Matcher matcher = regex.matcher(text);
+
+        if (matcher.find()) {
+            return matcher.group(1);
+        } else {
+            return "";
+        }
     }
 }
