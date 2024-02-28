@@ -14,6 +14,8 @@ import java.util.regex.Pattern;
  */
 public class UdeskTest {
 
+    private final static Pattern PHONE_PATTERN = Pattern.compile("^1[3456789]\\d{9}$");
+
     @Test
     public void test() {
         String email = "";
@@ -52,5 +54,22 @@ public class UdeskTest {
         } else {
             return "";
         }
+    }
+
+    public static boolean isMatchPhone(String phone) {
+        try {
+            Matcher matcher = PHONE_PATTERN.matcher(phone);
+
+            return matcher.matches();
+        } catch (Exception e) {
+
+            System.out.println("contact isMatchPhone error, phone");
+        }
+
+        return false;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(isMatchPhone("15362035232"));
     }
 }
