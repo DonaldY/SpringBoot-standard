@@ -1,8 +1,5 @@
 package com.donaldy.utils;
 
-import org.tomitribe.auth.signatures.Base64;
-import org.tomitribe.auth.signatures.Signature;
-import org.tomitribe.auth.signatures.Signer;
 
 import javax.crypto.spec.SecretKeySpec;
 import java.io.IOException;
@@ -17,44 +14,44 @@ import java.util.*;
  * @date 2024/3/22
  */
 public class SignatureUtil {
-    private static final DateFormat DATE_FORMAT = new SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss 'GMT'", Locale.US);
-    private static final List<String> SIGNATURE_HEADERS = new ArrayList<>(Arrays.asList("(request-target)", "Host", "Date", "Digest"));
-
-    public static String generateDigest(String payload) throws NoSuchAlgorithmException {
-        if (payload == null) {
-            return "";
-        }
-        // 计算 digest
-        final byte[] digest = MessageDigest.getInstance("SHA-256").digest(payload.getBytes()); // (1)
-        return "SHA-256=" + new String(Base64.encodeBase64(digest));
-    }
-
-    public static String generateSignature(String appId, String appSecret, String method,
-                                           String uri, Map<String, String> headers)
-            throws NoSuchAlgorithmException, IOException {
-        // 计算签名
-        final Signature signature = new Signature(appId, "hmac-sha256", "hmac-sha256", null, Arrays.asList("(request-target)", "Host", "Date", "Digest"));
-        final String secretHash = secretHash(appSecret);
-        final Key key = new SecretKeySpec(secretHash.getBytes(), "HmacSHA256");
-        final Signer signer = new Signer(key, signature);
-        Signature sign = signer.sign(method, uri, headers);
-        return sign.toString();
-    }
-
-    public static String secretHash(String appSecret) throws NoSuchAlgorithmException {
-        final byte[] secretHashBytes = MessageDigest.getInstance("SHA-256").digest(appSecret.getBytes());
-        return new String(Base64.encodeBase64(secretHashBytes));
-    }
-
-    public static Map<String, String> headers() {
-        Map<String, String> headers = new HashMap<>();
-        headers.put("Host", "test-gateway.pingpongx.com");
-        String date = DATE_FORMAT.format(new Date());
-        headers.put("Date", date);
-//        headers.put("Host", "gateway.pingpongx.com");
-//        headers.put("Date", "Tue, 16 Jan 2024 10:03:20 GMT");
-        return headers;
-    }
+//    private static final DateFormat DATE_FORMAT = new SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss 'GMT'", Locale.US);
+//    private static final List<String> SIGNATURE_HEADERS = new ArrayList<>(Arrays.asList("(request-target)", "Host", "Date", "Digest"));
+//
+//    public static String generateDigest(String payload) throws NoSuchAlgorithmException {
+//        if (payload == null) {
+//            return "";
+//        }
+//        // 计算 digest
+//        final byte[] digest = MessageDigest.getInstance("SHA-256").digest(payload.getBytes()); // (1)
+//        return "SHA-256=" + new String(Base64.encodeBase64(digest));
+//    }
+//
+//    public static String generateSignature(String appId, String appSecret, String method,
+//                                           String uri, Map<String, String> headers)
+//            throws NoSuchAlgorithmException, IOException {
+//        // 计算签名
+//        final Signature signature = new Signature(appId, "hmac-sha256", "hmac-sha256", null, Arrays.asList("(request-target)", "Host", "Date", "Digest"));
+//        final String secretHash = secretHash(appSecret);
+//        final Key key = new SecretKeySpec(secretHash.getBytes(), "HmacSHA256");
+//        final Signer signer = new Signer(key, signature);
+//        Signature sign = signer.sign(method, uri, headers);
+//        return sign.toString();
+//    }
+//
+//    public static String secretHash(String appSecret) throws NoSuchAlgorithmException {
+//        final byte[] secretHashBytes = MessageDigest.getInstance("SHA-256").digest(appSecret.getBytes());
+//        return new String(Base64.encodeBase64(secretHashBytes));
+//    }
+//
+//    public static Map<String, String> headers() {
+//        Map<String, String> headers = new HashMap<>();
+//        headers.put("Host", "test-gateway.pingpongx.com");
+//        String date = DATE_FORMAT.format(new Date());
+//        headers.put("Date", date);
+////        headers.put("Host", "gateway.pingpongx.com");
+////        headers.put("Date", "Tue, 16 Jan 2024 10:03:20 GMT");
+//        return headers;
+//    }
 
     public static void main(String[] args) throws NoSuchAlgorithmException, IOException {
 
@@ -74,12 +71,12 @@ public class SignatureUtil {
 //        System.out.println(headers);
 
 
-        String payload = "{}";
-        Map<String, String> headers = headers();
-        String digest = generateDigest(payload);
-        headers.put("Digest",digest);
-        headers.put("Signature",(generateSignature("803797871484260","DFE2167FD0D149C38965AE4D","POST","/v2/dataapi/v2/store/clientIds",headers)));
-        System.out.println(headers);
+//        String payload = "{}";
+//        Map<String, String> headers = headers();
+//        String digest = generateDigest(payload);
+//        headers.put("Digest",digest);
+//        headers.put("Signature",(generateSignature("803797871484260","DFE2167FD0D149C38965AE4D","POST","/v2/dataapi/v2/store/clientIds",headers)));
+//        System.out.println(headers);
 
 //        String payload = "{\"clientId\":\"2107230003597139\",\"platform\":\"AMAZON_NA\",\"startTime\":1669564800,\"endTime\":1669651200,\"pageNo\":1,\"pageSize\":10}";
 //        Map<String, String> headers = headers();
