@@ -1,6 +1,8 @@
 package com.donaldy.config;
 
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
+import org.slf4j.MDC;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.AsyncConfigurer;
 import org.springframework.scheduling.annotation.EnableAsync;
@@ -20,13 +22,32 @@ public class AsyncConfig implements AsyncConfigurer {
         executor.setMaxPoolSize(10);
         executor.setQueueCapacity(100);
         executor.setThreadNamePrefix("AsyncThread-");
-        executor.initialize(); //如果不初始化，导致找到不到执行器
+        executor.setTaskDecorator(MdcTaskDecorator::new);
+        executor.initialize();
         return executor;
     }
 
-   /* @Override
-    public AsyncUncaughtExceptionHandler getAsyncUncaughtExceptionHandler() {
+    // 自定义的Runnable装饰器，用于设置MDC
+    private static class MdcTaskDecorator implements Runnable {
 
-        return new AsyncExceptionHandler();
-    }*/
+        private final Runnable delegate;
+
+        public MdcTaskDecorator(Runnable delegate) {
+            this.delegate = delegate;
+        }
+
+        @Override
+        public void run() {
+            String traceId = MDC.get("traceId");
+            if (StringUtils.isNotBlank(traceId)) {
+                MDC.put("traceId", traceId);
+            }
+            try {
+                delegate.run();
+            } finally {
+
+                MDC.clear();
+            }
+        }
+    }
 }
