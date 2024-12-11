@@ -304,6 +304,12 @@
 			<version>5.5.7</version>
 		</dependency>
 
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>QLExpress</artifactId>
+			<version>3.3.4</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>
