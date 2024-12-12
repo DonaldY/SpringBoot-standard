@@ -1,0 +1,221 @@
+
+Active Config Error, Pls Check
+BizLine Can't be null
+BizLine can't be null
+BizLine 不能为空
+Cal Type Can't Be Null
+Channel Code Can't Be Null
+ChannelName Can't Be Null
+ChannelVersion Can't Be Null
+Cid can't be null
+Cid 不能为空
+ClientId Can't Be Null
+ClientId List Can't Be Null
+ClientId Size Over 1000
+ClientId 不能为空
+ClientId不能为空
+ClientId对应客户不存在
+Code 不能为空
+Commission Cal Time Can't Be Null
+CommissionSettleCycle Can't Be Null
+Current SettleCycle Not Support
+DTS Record Can't Be Null
+ExCurrency Config Error, Pls Check
+FeeRate Can't Be Null
+ID 不能为空
+Id参数不能为空
+MPT Merchant Config Can't Be Null
+MPT Merchant Config Error
+MetaClientId 不能为空
+Param Illegal
+Platform 不能为空
+RecordGenerator: unknown mode not support
+Tag 配置信息不能为空
+Tpv认定日期不能为空!
+VA查询异常
+[ActivationFixedNumNode] 佣金激活配置不能为空
+[SettlementFixedCommissionNode] 结汇佣金子结算类型不能为空
+abandon failed.
+accId不能为空
+bizLine Code 不能为空
+bossId有误
+clientId不能为空
+config error
+from owner and to owner can't be null at same time.
+from ownership not exists.
+init error
+input param is null.
+input resource is null.
+leadId Can't Be Null
+metricIndicatorType找不到
+metricModeType找不到
+ownership not exists.
+param error
+processCode不能为空
+replace failed.
+resource is null.
+smb-data信息查询异常.
+tenant is null.
+thread overflow
+transfer failed.
+unbind
+userId不能为空
+上传失败，请重试
+业务线保留点差不能小于0
+业务线可调价点差不能小于0
+业务线托底点差不能为空
+业务线托底点差不能大于业务线保留点差
+业务线托底点差不能小于0
+佣金记录不存在
+信息不能为空
+准客户姓名不能为空
+分佣结算版本不能为空!
+创建流程失败，请重试
+原因不能为空
+参数不能为空
+参数为空
+参数有误
+参数错误
+商机参数有误
+回填字段不可为空
+回填字段或忽略信息至少写一个
+因福鑫ID查询能力有限，当前仅支持添加20个客户编号，超过部分请另行申请
+坐席组不能为空
+外呼事件参数错误
+子库容之和不能大于总库容
+存在审批流程未结束
+审批个数不能超过20个
+客户Did为空
+客户ID 不能为空
+客户Id 不能为空!!!
+客户Id不能为空
+客户Nid为空
+客户不存在
+客户不存在.
+客户关联不存在
+客户已有其它流程在进行中
+客户归属已存在
+客户数据有误
+客户管理单元不存在
+客户管理单元编号不能为空
+客户类别不能为空
+导入数据不能超过10000条
+导出渠道商不能为空
+小记不需要异常完成场景
+已有工单在途
+已经生成待办事项的待办定义无法作废
+已经申请过流程
+币种对不存在
+开通参数不能为空
+异常完成场景
+归属人没有调整, 无需撞单
+当前业务线暂不支持
+当前客户从未成功入账
+当前客户信息不存在，请检查
+当前客户等级暂不支持申请外汇调整
+当前币种对不支持调价
+当前数据已被关联
+当前时间已经超过Tpv认定有效日期,已失效
+当前标签信息为空
+当前用户的入账时间不能为空
+待办类型不能为空
+必传参数不能为空
+必填其一
+必填参数不能为空
+忽略信息未填写
+找不到对应部门
+无匹配数据，请确认业务线或客户编码输入是否正确
+无对应匹配审批人
+无对应配置部门
+暂不支持此币种对调优/调差
+暂无权限
+暂无权限查看
+暂无权限查看此客户
+暂无此汇率
+更新联系方式时，ResourceId 不能为空
+有关联客户，无法作废
+未获取姓名，请重试
+本次调整点差需大于 0
+查询不到对应外呼记录
+查询类型不能为空!
+根据id未查到对应数据
+此客户无归属人
+池code不能为空
+池不存在
+池编码不能为空
+池资源类型不能为空
+流程数据不能为空
+流程表单不能为空
+渠道商名称不能为空!
+用户不存在
+用户参数不能为空
+用户未进行库容配置，无法认领
+用户部门不存在
+申请原因不能为空
+申请原因过长
+申请记录不存在
+目标池code不能为空
+管理单元不存在
+管理单元名称已存在
+线索Id不能为空
+线索不存在
+结算周期不能为空!
+结算数据不存在
+统一社会信用代码不能为空
+职级累计可优化点差不能为空
+职级累计可优化点差不能大于等于100
+职级累计可优化点差不能小于0
+职级累计可劣化点差不能为空
+职级累计可劣化点差不能大于等于100
+职级累计可劣化点差不能小于0
+联系人不存在
+获取ExchangePolicy异常
+获取Policy异常
+认证信息或管理单元名称已存在
+该池下存在子池，不可删除
+该池无对应的父池可接收客户，不可删除
+该池无对应的父池可接收线索，不可删除
+请上传证明材料
+请先添加到对应坐席组
+请先配置部门职级点差
+请填写准客户名称
+请填写手机号码
+请填写手机号码.
+请填写本次调整点差
+请填写申请原因
+请填写邀请码链接
+请填写预期月流水规模
+请求参数不合法，请重新检查
+请求参数错误，请检查
+请求批次达上限
+请添加币种对
+请输入参数
+请输入客户Id
+请输入平台
+请输入推荐人
+请输入竞对报价
+请选择买入货币
+请选择修改原因
+请选择卖出货币
+请选择天数
+请选择平台
+请选择开通项目
+请选择撞单涉及团队类型
+请选择是否需要修改邀请码
+请选择点差调整方向
+请选择状态
+请选择生效开始时间
+请选择生效结束时间
+请选择申请原因
+请选择申请类别
+请选择竞对
+请选择竞对报价时间
+请选择部门
+资源类型不正确
+起止范围不能为空
+跟进状态不能为空
+部门下未查询到用户
+部门参数不能为空
+错误参数
+集团不存在
+预测时间不能为空
